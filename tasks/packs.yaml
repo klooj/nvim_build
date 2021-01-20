@@ -28,6 +28,7 @@
     name: "{{ item }}"
     state: present
     executable: "{{ npmexe }}"
+    path: ~/.config/nvm/versions/node/v14.15.1/lib
   with_items: "{{ nodes }}"
 
 - name: yarn packs
