@@ -25,10 +25,11 @@
 
 - name: npm packs
   community.general.npm:
-    name: "{{ nodes }}"
+    name: "{{ item }}"
     state: present
     global: yes
     executable: "{{ npmexe }}"
+  with_items: "{{ nodes }}"
 
 - name: yarn packs
   community.general.yarn:
