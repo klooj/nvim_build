@@ -1,0 +1,8 @@
+---
+# osx play vars
+
+make_exe: /usr/local/gnubin/make
+zsh_exe: /usr/local/bin/zsh
+lsp_lua_mac: yes
+gemexe: /usr/local/opt/ruby/bin/gem
+...

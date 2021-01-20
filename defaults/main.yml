@@ -1,0 +1,19 @@
+---
+# defaults file for nvimBuild
+
+nvim_source: neovim/neovim
+nvim_dir: "{{ ansible_env.HOME }}/.config/nvim"
+
+nv_dirs:
+  - ~/.config
+  - ~/.local
+  - ~/.cache
+  - ~/.cache/nvim
+  - ~/.cache/nvim/swag
+  - ~/.cache/nvim/undodir
+  - ~/.cache/nvim/backup
+  - ~/.cache/nvim/view
+  - ~/.cache/nvim/spell
+  - ~/.local/share
+  - "{{ nvim_dir }}"
+  - "{{ gits_dir }}"

@@ -1,0 +1,94 @@
+---
+# vars role nvim-packs
+
+lx_rtp_packs:
+  - name: fzf
+    path: ~/go/bin/fzf
+  - name: rg
+    path: ~/.cargo/bin/rg
+  - name: rga
+    path: ~/.cargo/bin/rga
+  - name: fd
+    path: ~/.cargo/bin/fd
+  - name: fzy
+    path: /usr/bin/fzy
+  - name: ack
+    path: /usr/bin/ack
+
+apts:
+  - ack
+  - autoconf
+  - automake
+  - build-essential
+  - cargo
+  - ccache
+  - cmake
+  - dirmngr
+  - ffmpeg
+  - fzy
+  - g++
+  - gettext
+  - gh
+  - gperf
+  - libluajit-5.1-dev
+  - libmsgpack-dev
+  - libtermkey-dev
+  - libtool
+  - libtool-bin
+  - libunibilium-dev
+  - libutf8proc-dev
+  - libuv1-dev
+  - libvterm-dev
+  - lua5.3
+  - luajit
+  - luarocks
+  - ninja-build
+  - pandoc
+  - pkg-config
+  - poppler-utils
+  - ripgrep
+  - software-properties-common
+  - unzip
+
+brews:
+  - ack
+  - automake
+  - ccache
+  - cmake
+  - fd
+  - fzf --HEAD
+  - fzy
+  - gettext
+  - libtool
+  - lua
+  - luajit --HEAD
+  - luarocks
+  - ninja
+  - pkg-config
+  - rg
+  - rga
+
+nodes:
+  - npm
+  - neovim
+  - yarn
+  - webpack
+  - markdownlint-cli
+  - write-good
+  - vscode-json-languageserver
+  - dockerfile-language-server-nodejs
+  - vim-language-server
+  - yaml-language-server
+  - bash-language-server
+
+gems:
+  - rake
+  - neovim
+  - minitest-neovim
+
+yarns:
+  - prettier
+
+perls:
+  - neovim
+...

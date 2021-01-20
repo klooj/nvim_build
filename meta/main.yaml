@@ -1,0 +1,29 @@
+---
+galaxy_info:
+  author: klooj
+  description: install dependencies for, build, and configure nvim
+
+  # issue_tracker_url: http://example.com/issue/tracker
+
+  license: MIT
+
+  min_ansible_version: 2.10
+
+  # min_ansible_container_version:
+
+  platforms:
+  - name: Ubuntu
+    versions:
+      - 20+
+  - name: macOS
+    versions:
+      - 10+
+  - name: RaspberryOS
+    versions:
+      - 10+
+
+  galaxy_tags:
+    - neovim
+
+dependencies: []
+...
