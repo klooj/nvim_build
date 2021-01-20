@@ -1,0 +1,62 @@
+---
+
+vars_files:
+  - vars/packs.yaml
+
+pre_tasks:
+  - name: create directories
+    file:
+      path: "{{ item }}"
+      state: directory
+      recurse: no
+      mode: 0750
+    with_items: "{{ nv_dirs }}"
+
+tasks:
+  - include_tasks: tasks/packs.yaml
+
+  - name: clone user config
+    git:
+      repo: "{{ pull_prefix }}{{ nvrc_repo }}.git"
+      dest: "{{ nvim_dir }}"
+      version: master
+      accept_hostkey: yes
+      clone: yes
+      update: yes
+
+  - name: clone source repo for build
+    git:
+      repo: "{{ pull_prefix }}{{ nvim_source }}.git"
+      dest: "{{ gits_dir }}"
+      version: master
+      accept_hostkey: yes
+      clone: yes
+      update: yes
+
+  - name: clone extra repos
+    git:
+      repo: "{{ pull_prefix }}{{ item.url }}.git"
+      dest: "{{ gits_dir }}/{{ item.name }}"
+      version: master
+      accept_hostkey: yes
+      clone: yes
+      update: yes
+    with_items: "{{ gits }}"
+
+  - include_tasks: tasks/extras.yaml
+
+  - name: clean up artifacts from prior builds
+    community.general.make:
+      chdir: "{{ nvim_build_dir }}"
+      target: distclean
+      make: "{{ make_exe }}"
+
+  - name: build release target
+    community.general.make:
+      chdir: "{{ nvim_build_dir }}"
+      params:
+        CMAKE_BUILD_TYPE: Release
+        CMAKE_INSTALL_PREFIX: ~/.local
+      target: install
+      make: "{{ make_exe }}"
+...
