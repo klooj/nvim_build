@@ -1,0 +1,11 @@
+---
+# linux play vars
+
+make: /usr/bin/make
+zsh_exe: /usr/bin/zsh
+gemexe: /usr/bin/gem
+
+# install_cargos: yes
+# install_fzf: yes
+lx_opt_packs: yes
+...

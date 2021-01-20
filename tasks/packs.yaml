@@ -1,0 +1,115 @@
+---
+
+# - name: install gh-cli lx
+#   become: yes
+#   when: ansible_system == 'Linux'
+#   block:
+#   - name: add  key
+#     apt_key:
+#       keyserver: keyserver.ubuntu.com
+#       id: C99B11DEB97541F0
+#       state: present
+
+#   - name: add  repo
+#     apt_repository:
+#       repo: https://cli.github.com/packages
+#       update_cache: yes
+
+- name: brew packs
+  community.general.homebrew:
+    name: "{{ brews }}"
+    state: present
+    update_homebrew: yes
+    upgrade_all: yes
+  when: ansible_system == 'Darwin'
+
+- name: npm packs
+  community.general.npm:
+    name: "{{ nodes }}"
+    state: present
+    global: yes
+    executable: "{{ npmexe }}"
+
+- name: yarn packs
+  community.general.yarn:
+    name: "{{ yarns }}"
+    global: yes
+    state: present
+    executable: "{{ yarnexe }}"
+
+- name: apt packs
+  apt:
+    name: "{{ apts }}"
+    state: present
+    install_recommends: yes
+    update_cache: yes
+    # upgrade: dist
+  become: yes
+  when: ansible_system == 'Linux'
+
+- name: pip packs
+  pip:
+    requirements: "{{ nvrc_repo }}/requirements.txt"
+    state: present
+    executable: "{{ pipexe }}"
+
+- name: ruby gems
+  community.general.gem:
+    name: "{{ item }}"
+    state: present
+    include_dependencies: yes
+    include_doc: yes
+    executable: "{{ gemexe }}"
+  with_items: "{{ gems }}"
+  become: no
+  when: (install_gems is defined ) and install_gems
+
+- name: perl packs
+  community.general.cpanm:
+    name: "{{ perls }}"
+  when: (install_perls is defined ) and install_perls
+
+- name: lx cargo
+  shell: |
+    which rg &>/dev/null || cargo install ripgrep
+    which rga &>/dev/null || cargo install ripgrep-all
+    which fd &>/dev/null || cargo install fd-find
+  args:
+    chdir: ~/
+    executable: "{{ zsh_exe }}"
+  when: (install_cargos is defined ) and install_cargos
+
+- name: copy fzf script
+  copy:
+    src: files/fzf_ansible.zsh
+    dest: ~/
+    owner: "{{ ansible_user_id }}"
+    mode: '0777'
+  when: (install_fzf is defined ) and install_fzf
+
+- name: run fzf script
+  shell: |
+    ./fzf_ansible.zsh
+    rm ~/fzf_ansible.zsh
+  args:
+    chdir: ~/
+    executable: "{{ zsh_exe }}"
+  when: (install_fzf is defined ) and install_fzf
+
+- name: create lx opt directory
+  file:
+    path: /usr/local/opt
+    state: directory
+    mode: 0750
+  become: yes
+  when: (lx_opt_packs is defined ) and lx_opt_packs
+
+- name: link lx opt packs
+  file:
+    src: "{{ item.path }}"
+    dest: "/usr/local/opt/{{ item.name }}"
+    state: link
+  with_items: "{{ lx_rtp_packs }}"
+  when: (lx_opt_packs is defined) and lx_opt_packs
+
+...
