@@ -4,4 +4,4 @@
   tasks:
     - name: "Include nvimBuild"
       include_role:
-        name: "nvimBuild"
+        name: nvimBuild
