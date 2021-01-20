@@ -1,5 +1,11 @@
 ---
-
+- name: create directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    recurse: no
+    mode: 0750
+  with_items: "{{ nv_dirs }}"
 
 - include_tasks: tasks/packs.yaml
 
