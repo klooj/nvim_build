@@ -27,7 +27,6 @@
   community.general.npm:
     name: "{{ item }}"
     state: present
-    global: yes
     executable: "{{ npmexe }}"
   with_items: "{{ nodes }}"
 
