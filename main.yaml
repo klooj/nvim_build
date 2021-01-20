@@ -1,0 +1,15 @@
+---
+
+vars_files:
+  - vars/packs.yaml
+
+pre_tasks:
+  - name: create directories
+    file:
+      path: "{{ item }}"
+      state: directory
+      recurse: no
+      mode: 0750
+    with_items: "{{ nv_dirs }}"
+
+...
