@@ -13,6 +13,8 @@
     chdir: "{{ gits_dir }}/lua-language-server"
     executable: "{{ exe_shell }}"
   when: ansible_system == 'Darwin' and lsp_lua_mac
+  register: maclsp
+  changed_when: maclsp.rc == '0'
 
 - name: install or update lua lsp lx
   shell: |
@@ -28,5 +30,6 @@
   when: >
     ansible_system == 'Linux' and
     ansible_architecture != "armv7l" and lsp_lua_lx
-
+  register: lxlsp
+  changed_when: lxlsp.rc == '0'
 ...
