@@ -1,5 +1,6 @@
 ---
 # defaults file for nvimBuild
+build_it: no
 
 nvim_source: neovim/neovim
 nvim_url: "git@github.com:{{ nvim_source }}.git"
@@ -8,7 +9,6 @@ nvim_build_dir: "{{ gits_dir }}/neovim"
 nvim_dir: "{{ ansible_env.HOME }}/.config/nvim"
 nv_dirs_mk: false
 git_key: ""
-# git_method: https
 
 install_brews: false
 install_apts: false
@@ -24,16 +24,9 @@ lsp_lua_lx: false
 lsp_lua_mac: false
 lx_rtp_bin: false
 
-# pull_prefix: >
-#   "{% if git_method == 'ssh' %}'git@github.com:'
-#     {% else %}'https://github.com/'{% endif %}"
-
 gits:
   - name: lua-language-server
     url: git@github.com:sumneko/lua-language-server.git
-
-# nvrc_url: "{{ pull_prefix + nvrc_repo }}"
-# source_url: "{{ pull_prefix + nvim_source }}"
 
 nv_dirs:
   - ~/.config
@@ -125,18 +118,5 @@ gems:
 perls:
   - Neovim
   # - JACQUESG/Neovim-Ext-0.05.tar.gz
-
-# nodes:
-#   - npm
-#   - neovim
-#   - yarn
-#   - webpack
-#   - markdownlint-cli
-#   - write-good
-#   - vscode-json-languageserver
-#   - dockerfile-language-server-nodejs
-#   - vim-language-server
-#   - yaml-language-server
-#   - bash-language-server
 
 ...
