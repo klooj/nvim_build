@@ -52,7 +52,7 @@ It is not required but is strongly recommended to get your virtual environment a
 | `gits`           | +       | dict   | repos to clone; format: `[- name: any, repo: foo/bar]`  |
 | `install_apts`   | no      | bool   |  |
 | `install_brews`  | no      | bool   |  |
-| `install_cargos` | no      | bool   | whether to install cargo, i.e. fd on lx (uses shell)  |
+| `install_cargos` | no      | bool   | whether to install fd, rg, and rga crates (uses shell)  |
 | `install_gems`   | no      | bool   |  |
 | `install_perls`  | no      | bool   | not working atm  |
 | `install_pips`   | no      | bool   |  |

@@ -6,5 +6,5 @@
   tasks:
   - name: check version
     shell:
-      cmd: nvim -v
+      cmd: ~/.local/bin/nvim -v
 ...
