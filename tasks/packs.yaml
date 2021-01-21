@@ -7,6 +7,12 @@
     upgrade_all: yes
   when: ansible_system == 'Darwin'
 
+- name: brew from head
+  community.general.homebrew:
+    name: "{{ brew_heads }}"
+    state: head
+  when: ansible_system == 'Darwin'
+
 - name: apt packs
   apt:
     name: "{{ apts }}"

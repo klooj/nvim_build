@@ -96,17 +96,19 @@ brews:
   - ccache
   - cmake
   - fd
-  - "fzf --HEAD"
   - fzy
   - gettext
   - libtool
   - lua
-  - "luajit --HEAD"
-  - luarocks
   - ninja
   - pkg-config
   - rg
   - rga
+
+brew_heads:
+  - fzf
+  - luajit
+  - luarocks
 
 gems:
   - rake

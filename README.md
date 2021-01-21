@@ -4,21 +4,22 @@ Install the dependencies and packages and clone or update the repos used for bui
 
 ## Requirements
 
-This role works on debian based linux distros and macOS.
+This role works on debian based linux distros and macOS and requires apt or homebrew, respectively.
 
-Zsh _might_ be required for tasks that use shell modules. You can define the executable however you like, but I always specify zsh and have never tried with another shell. The tasks using shell modules are: install_cargos, install_fzf, install_tab9, and the lsp_lua commands. In theory, they should not require zsh.
+Zsh _might_ be required for tasks that use shell modules. You can define the executable however you like, but I always specify zsh and have never tried with another shell. The tasks using shell modules are: `install_cargos,` `install_fzf,` `install_tab9,` and the `lsp_lua` commands. In theory, they should not require zsh.
 If you want to use the included TabNine or fzf scripts, then zsh is definitely required.
 
-If you enable lsp_lua_mac/lx, it gets built from source. The dependencies should be covered by the default brew/apt lists but the build may fail on machines with older versions of C++, which is well beyond scope. Also, the lua lsp does not build on armv (raspberrypi).
+If you enable `lsp_lua_mac/lx,` it gets built from source. The dependencies should be covered by the default brew/apt lists but the build may fail on machines with older versions of C++, which is well beyond scope. Also, the lua lsp does not build on armv (raspberrypi).
 
 It is not required but is strongly recommended to get your virtual environment affairs in order before running this play.
+
 
 ## Role Variables
 
 variable         | default directory                     | description
------------------|---------------------------------------|------------------------------|
-`nvim_build_dir` | "{{ gits_dir }}/neovim"               | local dest for source repo
-`nvim_dir`       | "{{ ansible_env.HOME }}/.config/nvim" | local dest for config
+-----------------|---------------------------------------|----------------------------|
+`nvim_build_dir` | `{{ gits_dir }}/neovim`               | local dest for source repo
+`nvim_dir`       | `{{ ansible_env.HOME }}/.config/nvim` | local dest for config
 `nvim_source`    | neovim/neovim                         | build source repo
 `nvrc_repo`      |                                       | personal config repo
 
@@ -28,6 +29,7 @@ variable         | default | type   | description
 -----------------|---------|--------|----------------------------------------------------------------|
 `apts`           | +       | list   | apt packs
 `brews`          | +       | list   | homebrew packs
+`brew_heads`     | +       | list   | same but install from `--HEAD`
 `build_it`       | no      | bool   | whether to actually build nvim after running all other tasks
 `exe_gem`        |         | string | path to executable
 `exe_make`       |         | string | path to executable
@@ -59,10 +61,10 @@ variable         | default | type   | description
 
 NOTE:
   1. I cannot get ansible's cpanm module to function properly. If you would like perl + neovim integration, run this from the command line: `cpanm Neovim::Ext`
-  2. pip and yarn/npm install from requirements.txt/package.json, respectively, instead of taking a list. Make sure those files are in your nvim_dir or use a pre-task to put them in place (see playbook example below).
+  2. pip and yarn/npm install from requirements.txt/package.json, respectively, instead of taking a list. Make sure those files are in your `nvim_dir` or use a pre-task to put them in place (see playbook example below).
   3. Only github is supported out of the box. I have never used gitlab or any other version control platform and do not know my way around.
   4. npm was constantly throwing errors over things that no self-respecting package manager should, so right now this role uses yarn only ... and I do not feel compelled to try reimplementing npm.
-  5. The lx_rtp_bin "vim bin" is a directory with the same absolute path on each machine that is not in `$PATH`, and I use it for symlinking binaries that I want to made specifically available to neovim. So, in vimrc I can just rtp+=/usr/local/opt/fzf once and forget about it.
+  5. The `lx_rtp_bin` "vim bin" is a directory with the same absolute path on each machine that is not in `$PATH`, and I use it for symlinking binaries that I want to made specifically available to neovim. So, in vimrc I can just rtp+=/usr/local/opt/fzf once and forget about it.
 
 ## Dependencies
 
