@@ -70,7 +70,8 @@
     target: distclean
     make: "{{ exe_make }}"
   when: build_it
-  tag: molecule-idempotence-notest
+  tags:
+    - molecule-idempotence-notest
 
 - name: build release target
   community.general.make:
@@ -81,5 +82,6 @@
     target: install
     make: "{{ exe_make }}"
   when: build_it
-  tag: molecule-idempotence-notest
+  tags:
+    - molecule-idempotence-notest
 ...
