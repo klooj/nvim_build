@@ -61,7 +61,14 @@
   args:
     chdir: ~/
     executable: "{{ exe_shell }}"
-  when: install_cargos
+    register: crates
+    changed_when: crates.rc == 0
+  when: install_cargos and not cargo_done
+
+- name: remember cargo installation
+  set_fact:
+    cargo_done: yes
+  when: (crates is defined) and crates.rc == 0
 
 - name: copy fzf script
   copy:
