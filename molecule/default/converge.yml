@@ -1,6 +1,15 @@
 ---
 - name: Converge
   hosts: all
+  vars:
+    build_it: yes
+    nvrc_repo: klooj/nvimrc-lua
+    nv_dirs_mk: yes
+    lsp_lua_lx: yes
+    lx_rtp_bin: yes
+
+    install_apts: yes
+
   tasks:
     - name: update apt
       apt:
