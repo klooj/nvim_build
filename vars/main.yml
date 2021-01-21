@@ -113,5 +113,5 @@ gems:
 #   - prettier
 
 perls:
-  - Neovim::Ext
+  - Neovim-Ext
 ...
