@@ -1,0 +1,5 @@
+---
+nvrc_url: "git@github.com:{{ nvrc_repo }}.git"
+nvim_url: "git@github.com:{{ nvim_source }}.git"
+# gits_url: "{{ gits | map(attribute='repo') | map ('regex_replace', '(^.*$)', 'git@github.com:\\1.git') | list }}"
+...

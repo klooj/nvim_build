@@ -3,12 +3,12 @@
 build_it: no
 
 nvim_source: neovim/neovim
-nvim_url: "git@github.com:{{ nvim_source }}.git"
 nvim_build_dir: "{{ gits_dir }}/neovim"
-
 nvim_dir: "{{ ansible_env.HOME }}/.config/nvim"
 nv_dirs_mk: false
+
 git_key: ""
+git_method: https
 
 install_brews: false
 install_apts: false
@@ -26,7 +26,7 @@ lx_rtp_bin: false
 
 gits:
   - name: lua-language-server
-    url: git@github.com:sumneko/lua-language-server.git
+    repo: sumneko/lua-language-server
 
 nv_dirs:
   - ~/.config

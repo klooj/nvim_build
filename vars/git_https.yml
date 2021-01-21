@@ -1,0 +1,4 @@
+---
+nvrc_url: "https://github.com/{{ nvrc_repo }}.git"
+nvim_url: "https://github.com/{{ nvim_source }}.git"
+...

@@ -15,7 +15,7 @@
   when: git_method == 'ssh'
 
 - name: load https formatted git urls
-  include_vars: vars/git_ssh.yml
+  include_vars: vars/git_https.yml
   when: git_method != 'ssh'
 
 - name: clone user config
@@ -41,7 +41,8 @@
 
 - name: clone extra repos ssh
   git:
-    repo: "{{ item.url }}"
+    repo: "{{ 'git@github.com:%s.git' | format(item.repo) }}"
+    # repo: "{{  item }}"
     dest: "{{ gits_dir }}/{{ item.name }}"
     version: master
     accept_hostkey: yes
@@ -49,7 +50,17 @@
     update: yes
     key_file: "{{ git_key }}"
   with_items: "{{ gits }}"
-  when: gits is iterable
+  when: git_method == 'ssh' and gits is iterable
+
+- name: clone extra repos https
+  git:
+    repo: "{{ 'https://github.com/%s.git' | format(item.repo) }}"
+    dest: "{{ gits_dir }}/{{ item.name }}"
+    version: master
+    clone: yes
+    update: yes
+  with_items: "{{ gits }}"
+  when: git_method != 'ssh' and gits is iterable
 
 - include_tasks: tasks/extras.yaml
 

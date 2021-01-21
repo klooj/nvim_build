@@ -21,8 +21,7 @@ variable         | default directory                     | description
 `nvim_build_dir` | `{{ gits_dir }}/neovim`               | local dest for clone of source repo
 `nvim_dir`       | `{{ ansible_env.HOME }}/.config/nvim` | local dest for clone of user config
 `nvim_source`    | neovim/neovim                         | build source repo
-`nvim_url`       | git@github.com:neovim/neovim.git      | build source repo
-`nvrc_url`       |                                       | personal config repo
+`nvrc_repo`      |                                       | personal config repo
 
 The default for nearly everything is non-action.
 
@@ -41,7 +40,7 @@ variable         | default | type   | description
 `git_key`        |         | string | path to host key when using ssh for pulls/clones
 `git_method`     | https   | string | only supported options are ssh and https
 `gits_dir`       |         | string | local parent directory where extra repos are cloned
-`gits`           | +       | list   | repos to clone/update; format: [name: repo, url: git@github.com/user/repo.git]
+`gits`           | +       | dict   | repos to clone; format: [`- name: any`, `repo: foo/bar`]
 `install_apts`   | no      | bool   |
 `install_brews`  | no      | bool   |
 `install_cargos` | no      | bool   | whether to install cargo, i.e. fd on lx (uses shell)
