@@ -13,7 +13,7 @@ To use this role, add the following to your requirements file and run ansible-ga
 
 This role works on debian based linux distros and macOS and requires apt or homebrew, respectively.  
 
-Zsh _might_ be required for tasks that use shell modules. You can define the executable however you like, but I always specify zsh and have never tried with another shell. The tasks using shell modules are: `install_cargos,` `install_fzf,` `install_tab9,` and the `lsp_lua` commands. In theory, they should not require zsh. If you want to use the included TabNine or fzf scripts, then zsh is definitely required.  
+Zsh _might_ be required for tasks that use shell modules. You can define the executable however you like, but I always specify zsh and have never tried with another shell. The tasks using shell modules are: `install_cargos,` `install_fzf,` `install_tab9,` and the `lsp_lua` commands. In theory, the included TabNine or fzf scripts should require zsh.  
 
 If you enable `lsp_lua_[mac|lx]`, it gets built from source. The dependencies are covered by the default brew/apt lists but the build may fail on machines with older versions of C++, which is well beyond scope. Also, the lua lsp does not build on armv (raspberrypi).  
 
