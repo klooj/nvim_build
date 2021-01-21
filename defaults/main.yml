@@ -5,12 +5,13 @@ nvim_source: neovim/neovim
 nvim_dir: "{{ ansible_env.HOME }}/.config/nvim"
 nvim_build_dir: "{{ gits_dir }}/neovim"
 gits_dir: "{{ ansible_env.HOME }}/gits"
+git_key: ""
+pull_method: https
+
 
 npmexe: ~/.config/nvm/versions/node/v14.15.1/bin/npm
 pipexe: ~/.pyenv/versions/neovim3.9/bin/pip
 yarnexe: ~/.config/nvm/versions/node/v14.15.1/bin/yarn
-
-pull_method: ssh
 
 pull_prefix: >
   "{% if pull_method == 'ssh' %}git@github.com:
