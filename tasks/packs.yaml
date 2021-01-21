@@ -1,20 +1,4 @@
 ---
-
-# - name: install gh-cli lx
-#   become: yes
-#   when: ansible_system == 'Linux'
-#   block:
-#   - name: add  key
-#     apt_key:
-#       keyserver: keyserver.ubuntu.com
-#       id: C99B11DEB97541F0
-#       state: present
-
-#   - name: add  repo
-#     apt_repository:
-#       repo: https://cli.github.com/packages
-#       update_cache: yes
-
 - name: brew packs
   community.general.homebrew:
     name: "{{ brews }}"
@@ -22,21 +6,6 @@
     update_homebrew: yes
     upgrade_all: yes
   when: ansible_system == 'Darwin'
-
-# - name: npm packs
-#   community.general.npm:
-#     name: "{{ item }}"
-#     state: present
-#     executable: "{{ npmexe }}"
-#     path: ~/.config/nvm/versions/node/v14.15.1/lib
-#   with_items: "{{ nodes }}"
-
-- name: yarn packs
-  community.general.yarn:
-    path: "{{ nvim_dir }}"
-    state: latest
-    executable: "{{ yarnexe }}"
-  when: install_yarns
 
 - name: apt packs
   apt:
@@ -48,11 +17,18 @@
   become: yes
   when: ansible_system == 'Linux'
 
+- name: yarn packs
+  community.general.yarn:
+    path: "{{ nvim_dir }}"
+    state: latest
+    executable: "{{ exe_yarn }}"
+  when: install_yarns
+
 - name: pip packs
   pip:
     requirements: "{{ nvim_dir }}/requirements.txt"
     state: latest
-    executable: "{{ pipexe }}"
+    executable: "{{ exe_pip }}"
   when: install_pips
 
 - name: ruby gems
@@ -61,7 +37,7 @@
     state: present
     include_dependencies: yes
     include_doc: yes
-    executable: "{{ gemexe }}"
+    executable: "{{ exe_gem }}"
   with_items: "{{ gems }}"
   become: no
   when: install_gems
@@ -78,8 +54,8 @@
     which fd &>/dev/null || cargo install fd-find
   args:
     chdir: ~/
-    executable: "{{ zsh_exe }}"
-  when: (install_cargos is defined ) and install_cargos
+    executable: "{{ exe_zsh }}"
+  when: ansible_system == 'Linux' and install_cargos
 
 - name: copy fzf script
   copy:
@@ -87,7 +63,7 @@
     dest: ~/
     owner: "{{ ansible_user_id }}"
     mode: '0777'
-  when: (install_fzf is defined ) and install_fzf
+  when: ansible_system == 'Linux' and install_fzf
 
 - name: run fzf script
   shell: |
@@ -95,8 +71,8 @@
     rm ~/fzf_ansible.zsh
   args:
     chdir: ~/
-    executable: "{{ zsh_exe }}"
-  when: (install_fzf is defined ) and install_fzf
+    executable: "{{ exe_zsh }}"
+  when: ansible_system == 'Linux' and install_fzf
 
 - name: create lx opt directory
   file:
@@ -104,7 +80,7 @@
     state: directory
     mode: 0750
   become: yes
-  when: (lx_opt_packs is defined ) and lx_opt_packs
+  when: ansible_system == 'Linux' and lx_opt_packs
 
 - name: link lx opt packs
   file:
@@ -112,6 +88,6 @@
     dest: "/usr/local/opt/{{ item.name }}"
     state: link
   with_items: "{{ lx_rtp_packs }}"
-  when: (lx_opt_packs is defined) and lx_opt_packs
+  when: ansible_system == 'Linux' and lx_opt_packs
 
 ...

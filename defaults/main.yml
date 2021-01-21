@@ -6,15 +6,20 @@ nvim_dir: "{{ ansible_env.HOME }}/.config/nvim"
 nvim_build_dir: "{{ gits_dir }}/neovim"
 gits_dir: "{{ ansible_env.HOME }}/gits"
 git_key: ""
-pull_method: https
+git_method: https
 
+install_yarns: false
+install_pips: false
+install_gems: false
+install_perls: false
+install_cargos: no
+install_fzf: no
 
-npmexe: ~/.config/nvm/versions/node/v14.15.1/bin/npm
-pipexe: ~/.pyenv/versions/neovim3.9/bin/pip
-yarnexe: ~/.config/nvm/versions/node/v14.15.1/bin/yarn
+exe_pip: ~/.pyenv/versions/neovim3.9/bin/pip
+exe_yarn: ~/.config/nvm/versions/node/v14.15.1/bin/yarn
 
 pull_prefix: >
-  "{% if pull_method == 'ssh' %}git@github.com:
+  "{% if git_method == 'ssh' %}git@github.com:
     {% else %}https://github.com/{% endif %}"
 
 gits:
@@ -111,9 +116,6 @@ gems:
 perls:
   - Neovim
   # - JACQUESG/Neovim-Ext-0.05.tar.gz
-
-# yarns:
-#   - prettier
 
 # nodes:
 #   - npm

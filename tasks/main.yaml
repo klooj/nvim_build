@@ -11,7 +11,7 @@
 
 - name: clone user config
   git:
-    repo: "git@github.com:{{ nvrc_repo }}.git"
+    repo: "{{ pull_prefix + nvrc_repo }}.git"
     dest: "{{ nvim_dir }}"
     version: master
     accept_hostkey: yes
@@ -21,7 +21,7 @@
 
 - name: clone source repo for build
   git:
-    repo: "git@github.com:{{ nvim_source }}.git"
+    repo: "{{ pull_prefix + nvim_source }}.git"
     dest: "{{ gits_dir }}/{{ nvim_source }}"
     version: master
     accept_hostkey: yes
@@ -31,7 +31,7 @@
 
 - name: clone extra repos
   git:
-    repo: "git@github.com:{{ item.url }}.git"
+    repo: "{{ pull_prefix + item.url }}.git"
     dest: "{{ gits_dir }}/{{ item.name }}"
     version: master
     accept_hostkey: yes
@@ -46,7 +46,7 @@
   community.general.make:
     chdir: "{{ nvim_build_dir }}"
     target: distclean
-    make: "{{ make_exe }}"
+    make: "{{ exe_make }}"
 
 - name: build release target
   community.general.make:
@@ -55,5 +55,5 @@
       CMAKE_BUILD_TYPE: Release
       CMAKE_INSTALL_PREFIX: ~/.local
     target: install
-    make: "{{ make_exe }}"
+    make: "{{ exe_make }}"
 ...

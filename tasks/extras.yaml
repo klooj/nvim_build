@@ -15,7 +15,7 @@
     rm ~/tab9_ansible.zsh
   args:
     chdir: ~/
-    executable: "{{ zsh_exe }}"
+    executable: "{{ exe_zsh }}"
   when: (install_tab9 is defined) and install_tab9
 
 - name: install or update lua lsp mac
@@ -28,7 +28,7 @@
     ./3rd/luamake/luamake rebuild
   args:
     chdir: "{{ gits_dir }}/lua-language-server"
-    executable: "{{ zsh_exe }}"
+    executable: "{{ exe_zsh }}"
   when: (lsp_lua_mac is defined) and lsp_lua_mac
 
 - name: install or update lua lsp lx
@@ -41,7 +41,7 @@
     ./3rd/luamake/luamake rebuild
   args:
     chdir: "{{ gits_dir }}/lua-language-server"
-    executable: "{{ zsh_exe }}"
+    executable: "{{ exe_zsh }}"
   when: (lsp_lua_lx is defined) and lsp_lua_lx
 
 ...
