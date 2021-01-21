@@ -30,6 +30,9 @@ gits:
   - name: lua-language-server
     url: sumneko/lua-language-server
 
+nvrc_url: "{{ pull_prefix + nvrc_repo }}"
+source_url: "{{ pull_prefix + nvim_source }}"
+
 nv_dirs:
   - ~/.config
   - ~/.local
