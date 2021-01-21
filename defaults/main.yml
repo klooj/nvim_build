@@ -69,7 +69,6 @@ apts:
   - fzy
   - g++
   - gettext
-  - gh
   - gperf
   - libluajit-5.1-dev
   - libmsgpack-dev
