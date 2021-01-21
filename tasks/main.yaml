@@ -22,7 +22,7 @@
 - name: clone source repo for build
   git:
     repo: "git@github.com:{{ nvim_source }}.git"
-    dest: "{{ gits_dir }}"
+    dest: "{{ gits_dir }}/{{ nvim_source }}"
     version: master
     accept_hostkey: yes
     clone: yes
