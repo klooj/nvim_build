@@ -4,6 +4,8 @@ Install the dependencies and packages and clone or update the repos used for bui
 
 ## Requirements
 
+This role works on debian based linux distros and macOS.
+
 Zsh _might_ be required for tasks that use shell modules. You can define the executable however you like, but I always specify zsh and have never tried with another shell. The tasks using shell modules are: install_cargos, install_fzf, install_tab9, and the lsp_lua commands. In theory, they should not require zsh.
 If you want to use the included TabNine or fzf scripts, then zsh is definitely required.
 
@@ -60,15 +62,13 @@ NOTE:
   2. pip and yarn/npm install from requirements.txt/package.json, respectively, instead of taking a list. Make sure those files are in your nvim_dir or use a pre-task to put them in place (see playbook example below).
   3. Only github is supported out of the box. I have never used gitlab or any other version control platform and do not know my way around.
   4. npm was constantly throwing errors over things that no self-respecting package manager should, so right now this role uses yarn only ... and I do not feel compelled to try reimplementing npm.
-  5. The lx_rtp_bin/"vim bin" is a directory with the same absolute path on each machine that is not in `$PATH`, and I use it for symlinking binaries that I want to made specifically available to neovim. So, in vimrc I can just rtp+=/usr/local/opt/fzf once and forget about it.
+  5. The lx_rtp_bin "vim bin" is a directory with the same absolute path on each machine that is not in `$PATH`, and I use it for symlinking binaries that I want to made specifically available to neovim. So, in vimrc I can just rtp+=/usr/local/opt/fzf once and forget about it.
 
-Dependencies
-------------
+## Dependencies
 
 ansible-galaxy collection install community.general
 
-Example Playbook
-----------------
+## Example Playbook
 
 ```yaml
 - hosts: all
@@ -93,30 +93,29 @@ Example Playbook
     git_key: "~/.ssh/{{ ansible_hostname }}_git"
     git_method: ssh
 
+    lsp_lua_lx: yes
+    lsp_lua_mac: yes
+    lx_rtp_bin: yes
+    nv_dirs_mk: yes
+
+    install_pips: yes
     exe_pip: ~/.pyenv/versions/neovim3.9/bin/pip
+    install_yarns: yes
     exe_yarn: ~/.config/nvm/versions/node/v14.15.1/bin/yarn
-
-    install_gems: true
-    install_pips: true
-    install_yarns: true
-
-    lsp_lua_lx: true
-    lsp_lua_mac: true
-
-    lx_rtp_bin: true
+    install_gems: yes
+    # exe_gem specified in host_vars
 
   roles:
     - nvim_build
+
 ```
 
-NOTE: put `exe_shell` in group_vars or host_vars.
+NOTE: put `exe_shell` in `group_vars/` or `host_vars/`.
 
-License
--------
+## License
 
 MIT
 
-Author Information
-------------------
+## Author Information
 
 github.com/klooj
