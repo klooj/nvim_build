@@ -12,7 +12,7 @@
 
 - name: clone user config
   git:
-    repo: "{{ nvrc.url }}"
+    repo: "{{ nvrc_url }}"
     dest: "{{ nvim_dir }}"
     version: master
     accept_hostkey: yes
