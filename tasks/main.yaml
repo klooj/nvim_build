@@ -11,7 +11,7 @@
 
 - name: clone user config
   git:
-    repo: "{{ pull_prefix }}{{ nvrc_repo }}.git"
+    repo: "git@github.com:{{ nvrc_repo }}.git"
     dest: "{{ nvim_dir }}"
     version: master
     accept_hostkey: yes
@@ -21,7 +21,7 @@
 
 - name: clone source repo for build
   git:
-    repo: "{{ pull_prefix }}{{ nvim_source }}.git"
+    repo: "git@github.com:{{ nvim_source }}.git"
     dest: "{{ gits_dir }}"
     version: master
     accept_hostkey: yes
@@ -31,7 +31,7 @@
 
 - name: clone extra repos
   git:
-    repo: "{{ pull_prefix }}{{ item.url }}.git"
+    repo: "git@github.com:{{ item.url }}.git"
     dest: "{{ gits_dir }}/{{ item.name }}"
     version: master
     accept_hostkey: yes
