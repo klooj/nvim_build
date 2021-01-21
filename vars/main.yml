@@ -91,26 +91,26 @@ brews:
   - rg
   - rga
 
-nodes:
-  - npm
-  - neovim
-  - yarn
-  - webpack
-  - markdownlint-cli
-  - write-good
-  - vscode-json-languageserver
-  - dockerfile-language-server-nodejs
-  - vim-language-server
-  - yaml-language-server
-  - bash-language-server
+# nodes:
+#   - npm
+#   - neovim
+#   - yarn
+#   - webpack
+#   - markdownlint-cli
+#   - write-good
+#   - vscode-json-languageserver
+#   - dockerfile-language-server-nodejs
+#   - vim-language-server
+#   - yaml-language-server
+  # - bash-language-server
 
 gems:
   - rake
   - neovim
   - minitest-neovim
 
-yarns:
-  - prettier
+# yarns:
+#   - prettier
 
 perls:
   - neovim

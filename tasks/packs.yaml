@@ -23,19 +23,18 @@
     upgrade_all: yes
   when: ansible_system == 'Darwin'
 
-- name: npm packs
-  community.general.npm:
-    name: "{{ item }}"
-    state: present
-    executable: "{{ npmexe }}"
-    path: ~/.config/nvm/versions/node/v14.15.1/lib
-  with_items: "{{ nodes }}"
+# - name: npm packs
+#   community.general.npm:
+#     name: "{{ item }}"
+#     state: present
+#     executable: "{{ npmexe }}"
+#     path: ~/.config/nvm/versions/node/v14.15.1/lib
+#   with_items: "{{ nodes }}"
 
 - name: yarn packs
   community.general.yarn:
-    name: "{{ yarns }}"
-    global: yes
-    state: present
+    path: "{{ nvim_dir }}"
+    state: latest
     executable: "{{ yarnexe }}"
 
 - name: apt packs
