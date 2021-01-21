@@ -3,6 +3,23 @@
 
 nvim_source: neovim/neovim
 nvim_dir: "{{ ansible_env.HOME }}/.config/nvim"
+nvim_build_dir: "{{ gits_dir }}/neovim"
+gits_dir: "{{ ansible_env.HOME }}/gits"
+
+npmexe: ~/.config/nvm/versions/node/v14.15.1/bin/npm
+pipexe: ~/.pyenv/versions/neovim3.9/bin/pip
+yarnexe: ~/.config/nvm/versions/node/v14.15.1/bin/yarn
+
+pull_method: ssh
+
+pull_prefix: >
+  "{% if pull_method == 'ssh' %}git@github.com:
+    {% else %}https://github.com/{% endif %}"
+
+gits:
+  - name: lua-language-server
+    url: sumneko/lua-language-server
+
 
 nv_dirs:
   - ~/.config
@@ -17,3 +34,97 @@ nv_dirs:
   - ~/.local/share
   - "{{ nvim_dir }}"
   - "{{ gits_dir }}"
+
+lx_rtp_packs:
+  - name: fzf
+    path: ~/go/bin/fzf
+  - name: rg
+    path: ~/.cargo/bin/rg
+  - name: rga
+    path: ~/.cargo/bin/rga
+  - name: fd
+    path: ~/.cargo/bin/fd
+  - name: fzy
+    path: /usr/bin/fzy
+  - name: ack
+    path: /usr/bin/ack
+
+apts:
+  - ack
+  - autoconf
+  - automake
+  - build-essential
+  - cargo
+  - ccache
+  - cmake
+  - dirmngr
+  - ffmpeg
+  - fzy
+  - g++
+  - gettext
+  - gh
+  - gperf
+  - libluajit-5.1-dev
+  - libmsgpack-dev
+  - libtermkey-dev
+  - libtool
+  - libtool-bin
+  - libunibilium-dev
+  - libutf8proc-dev
+  - libuv1-dev
+  - libvterm-dev
+  - lua5.3
+  - luajit
+  - luarocks
+  - ninja-build
+  - pandoc
+  - pkg-config
+  - poppler-utils
+  - ripgrep
+  - software-properties-common
+  - unzip
+
+brews:
+  - ack
+  - automake
+  - ccache
+  - cmake
+  - fd
+  - "fzf --HEAD"
+  - fzy
+  - gettext
+  - libtool
+  - lua
+  - "luajit --HEAD"
+  - luarocks
+  - ninja
+  - pkg-config
+  - rg
+  - rga
+
+gems:
+  - rake
+  - neovim
+  - minitest-neovim
+
+perls:
+  - Neovim
+  # - JACQUESG/Neovim-Ext-0.05.tar.gz
+
+# yarns:
+#   - prettier
+
+# nodes:
+#   - npm
+#   - neovim
+#   - yarn
+#   - webpack
+#   - markdownlint-cli
+#   - write-good
+#   - vscode-json-languageserver
+#   - dockerfile-language-server-nodejs
+#   - vim-language-server
+#   - yaml-language-server
+#   - bash-language-server
+
+...
