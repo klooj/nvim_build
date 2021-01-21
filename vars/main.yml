@@ -113,5 +113,6 @@ gems:
 #   - prettier
 
 perls:
-  - JACQUESG/Neovim-Ext-0.05.tar.gz
+  - Neovim
+  # - JACQUESG/Neovim-Ext-0.05.tar.gz
 ...
