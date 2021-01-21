@@ -12,7 +12,7 @@
 
 - name: clone user config
   git:
-    repo: "{{ [pull_prefix, nvrc_repo] | join }}.git"
+    repo: "{{ (pull_prefix + nvrc_repo) | join }}.git"
     dest: "{{ nvim_dir }}"
     version: master
     accept_hostkey: yes
@@ -22,7 +22,7 @@
 
 - name: clone source repo for build
   git:
-    repo: "{{ [pull_prefix, nvim_source] | join }}.git"
+    repo: "{{ (pull_prefix + nvim_source) | join }}.git"
     dest: "{{ gits_dir }}/{{ nvim_source }}"
     version: master
     accept_hostkey: yes
@@ -32,7 +32,7 @@
 
 - name: clone extra repos
   git:
-    repo: "{{ [pull_prefix, item.url] | join }}.git"
+    repo: "{{ (pull_prefix + item.url) | join }}.git"
     dest: "{{ gits_dir }}/{{ item.name }}"
     version: master
     accept_hostkey: yes
