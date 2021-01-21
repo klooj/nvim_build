@@ -1,0 +1,30 @@
+---
+name: CI
+'on':
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Molecule
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout codebase
+        uses: actions/checkout@v2
+
+      - name: set up python3
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: install test deps
+        run: pip3 install molecule docker yamllint ansible-lint
+
+      - name: run molecule
+        run: molecule test
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
