@@ -5,7 +5,7 @@
     - name: update apt
       apt:
         update_cache: true
-        cache_valid_time: 86,400
+        cache_valid_time: 86400
       when: ansible_os_family == 'Debian'
 
     - include_tasks: ../../tasks/main.yaml
