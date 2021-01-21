@@ -8,6 +8,8 @@ nv_dirs_mk: false
 git_key: ""
 git_method: https
 
+install_brews: false
+install_apts: false
 install_yarns: false
 install_pips: false
 install_gems: false
@@ -21,8 +23,8 @@ lsp_lua_mac: false
 lx_rtp_bin: false
 
 pull_prefix: >
-  "{% if git_method == 'ssh' %}git@github.com:
-    {% else %}https://github.com/{% endif %}"
+  "{% if git_method == 'ssh' %}'git@github.com:'
+    {% else %}'https://github.com/'{% endif %}"
 
 gits:
   - name: lua-language-server

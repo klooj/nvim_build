@@ -41,6 +41,8 @@ variable         | default | type   | description
 `git_method`     | https   | string | only supported options are ssh and https
 `gits_dir`       |         | string | local parent directory where extra repos are cloned
 `gits`           | +       | list   | repos to clone/update; format: user/repo
+`install_apts`   | no      | bool   |
+`install_brews`  | no      | bool   |
 `install_cargos` | no      | bool   | whether to install cargo, i.e. fd on lx (uses shell)
 `install_fzf`    | no      | bool   | whether to run fzf install script (good for lx; mac uses brew)
 `install_gems`   | no      | bool   |
@@ -100,6 +102,8 @@ ansible-galaxy collection install community.general
     lx_rtp_bin: yes
     nv_dirs_mk: yes
 
+    install_brews: yes
+    install_apts: yes
     install_pips: yes
     exe_pip: ~/.pyenv/versions/neovim3.9/bin/pip
     install_yarns: yes
