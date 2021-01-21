@@ -49,8 +49,8 @@
 
 - name: pip packs
   pip:
-    requirements: "{{ nvrc_repo }}/requirements.txt"
-    state: present
+    requirements: "{{ nvim_dir }}/requirements.txt"
+    state: latest
     executable: "{{ pipexe }}"
 
 - name: ruby gems
