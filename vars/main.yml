@@ -113,5 +113,5 @@ gems:
 #   - prettier
 
 perls:
-  - JACQUESG/Neovim-Ext
+  - JACQUESG/Neovim-Ext-0.05
 ...

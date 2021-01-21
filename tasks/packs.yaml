@@ -36,6 +36,7 @@
     path: "{{ nvim_dir }}"
     state: latest
     executable: "{{ yarnexe }}"
+  when: install_yarns
 
 - name: apt packs
   apt:
@@ -52,6 +53,7 @@
     requirements: "{{ nvim_dir }}/requirements.txt"
     state: latest
     executable: "{{ pipexe }}"
+  when: install_pips
 
 - name: ruby gems
   community.general.gem:
@@ -62,12 +64,12 @@
     executable: "{{ gemexe }}"
   with_items: "{{ gems }}"
   become: no
-  when: (install_gems is defined ) and install_gems
+  when: install_gems
 
 - name: perl packs
   community.general.cpanm:
     name: "{{ perls }}"
-  when: (install_perls is defined ) and install_perls
+  when: install_perls
 
 - name: lx cargo
   shell: |
