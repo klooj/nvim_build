@@ -17,13 +17,14 @@
     version: master
     accept_hostkey: yes
     clone: yes
+    force: no
     update: yes
     key_file: "{{ git_key }}"
 
 - name: clone source repo for build
   git:
-    repo: "{{ nvim_source.url }}"
-    dest: "{{ gits_dir }}/{{ nvim_source.name }}"
+    repo: "{{ nvim_url }}"
+    dest: "{{ gits_dir }}/{{ nvim_source }}"
     version: master
     accept_hostkey: yes
     clone: yes

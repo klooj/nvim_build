@@ -1,9 +1,8 @@
 ---
 # defaults file for nvimBuild
 
-nvim_source:
-  - name: neovim/neovim
-    url: git@github.com:neovim/neovim.git
+nvim_source: neovim/neovim
+nvim_url: "git@github.com:{{ nvim_source }}.git"
 
 nvim_dir: "{{ ansible_env.HOME }}/.config/nvim"
 nvim_build_dir: "{{ gits_dir }}/neovim"
