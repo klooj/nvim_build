@@ -6,6 +6,7 @@
     recurse: no
     mode: 0750
   with_items: "{{ nv_dirs }}"
+  when: nv_dirs_mk
 
 - include_tasks: tasks/packs.yaml
 
@@ -47,6 +48,7 @@
     chdir: "{{ nvim_build_dir }}"
     target: distclean
     make: "{{ exe_make }}"
+  when: build_it
 
 - name: build release target
   community.general.make:
@@ -56,4 +58,5 @@
       CMAKE_INSTALL_PREFIX: ~/.local
     target: install
     make: "{{ exe_make }}"
+  when: build_it
 ...

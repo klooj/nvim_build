@@ -4,7 +4,7 @@
 nvim_source: neovim/neovim
 nvim_dir: "{{ ansible_env.HOME }}/.config/nvim"
 nvim_build_dir: "{{ gits_dir }}/neovim"
-gits_dir: "{{ ansible_env.HOME }}/gits"
+nv_dirs_mk: false
 git_key: ""
 git_method: https
 
@@ -12,11 +12,13 @@ install_yarns: false
 install_pips: false
 install_gems: false
 install_perls: false
-install_cargos: no
-install_fzf: no
+install_cargos: false
+install_fzf: false
+install_tab9: false
 
-exe_pip: ~/.pyenv/versions/neovim3.9/bin/pip
-exe_yarn: ~/.config/nvm/versions/node/v14.15.1/bin/yarn
+lsp_lua_lx: false
+lsp_lua_mac: false
+lx_rtp_bin: false
 
 pull_prefix: >
   "{% if git_method == 'ssh' %}git@github.com:
@@ -25,7 +27,6 @@ pull_prefix: >
 gits:
   - name: lua-language-server
     url: sumneko/lua-language-server
-
 
 nv_dirs:
   - ~/.config

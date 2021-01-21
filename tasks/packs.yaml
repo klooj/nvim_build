@@ -54,8 +54,8 @@
     which fd &>/dev/null || cargo install fd-find
   args:
     chdir: ~/
-    executable: "{{ exe_zsh }}"
-  when: ansible_system == 'Linux' and install_cargos
+    executable: "{{ exe_shell }}"
+  when: install_cargos
 
 - name: copy fzf script
   copy:
@@ -63,7 +63,7 @@
     dest: ~/
     owner: "{{ ansible_user_id }}"
     mode: '0777'
-  when: ansible_system == 'Linux' and install_fzf
+  when: install_fzf
 
 - name: run fzf script
   shell: |
@@ -71,8 +71,8 @@
     rm ~/fzf_ansible.zsh
   args:
     chdir: ~/
-    executable: "{{ exe_zsh }}"
-  when: ansible_system == 'Linux' and install_fzf
+    executable: "{{ exe_shell }}"
+  when: install_fzf
 
 - name: create lx opt directory
   file:
@@ -80,7 +80,7 @@
     state: directory
     mode: 0750
   become: yes
-  when: ansible_system == 'Linux' and lx_opt_packs
+  when: ansible_system == 'Linux' and lx_rtp_bin
 
 - name: link lx opt packs
   file:
@@ -88,6 +88,6 @@
     dest: "/usr/local/opt/{{ item.name }}"
     state: link
   with_items: "{{ lx_rtp_packs }}"
-  when: ansible_system == 'Linux' and lx_opt_packs
+  when: ansible_system == 'Linux' and lx_rtp_bin
 
 ...
