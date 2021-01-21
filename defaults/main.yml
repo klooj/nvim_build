@@ -3,9 +3,9 @@
 
 nvim_source: neovim/neovim
 nvim_url: "git@github.com:{{ nvim_source }}.git"
+nvim_build_dir: "{{ gits_dir }}/neovim"
 
 nvim_dir: "{{ ansible_env.HOME }}/.config/nvim"
-nvim_build_dir: "{{ gits_dir }}/neovim"
 nv_dirs_mk: false
 git_key: ""
 # git_method: https
