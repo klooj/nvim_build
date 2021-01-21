@@ -105,7 +105,8 @@ ansible-galaxy collection install community.general
     install_yarns: yes
     exe_yarn: ~/.config/nvm/versions/node/v14.15.1/bin/yarn
     install_gems: yes
-    # exe_gem specified in host_vars
+
+    # group_vars: exe_make, exe_shell, exe_gem, install_cargos
 
   roles:
     - nvim_build
