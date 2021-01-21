@@ -1,3 +1,5 @@
+![CI](https://github.com/klooj/nvim_build/workflows/CI/badge.svg)
+
 # nvim_build  
 
 This ansible role builds the nightly version of neovim on macOS and debian based linux distributions.
