@@ -9,6 +9,7 @@ nv_dirs_mk: false
 
 git_key: ""
 git_method: https
+gits_dir: ~/gits
 
 install_brews: false
 install_apts: false
@@ -66,6 +67,8 @@ apts:
   - ffmpeg
   - fzy
   - g++
+  - git
+  - git-lfs
   - gettext
   - gperf
   - libluajit-5.1-dev
@@ -87,6 +90,7 @@ apts:
   - ripgrep
   - software-properties-common
   - unzip
+  - zsh
 
 brews:
   - ack

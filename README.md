@@ -48,7 +48,7 @@ It is not required but is strongly recommended to get your virtual environment a
 | `gems`           | +       | list   | ruby gems  |
 | `git_key`        |         | string | path to host key when using ssh for pulls/clones  |
 | `git_method`     | https   | string | only supported options are ssh and https  |
-| `gits_dir`       |         | string | local parent directory where extra repos are cloned  |
+| `gits_dir`       | ~/gits  | string | local parent directory where extra repos are cloned  |
 | `gits`           | +       | dict   | repos to clone; format: `[- name: any, repo: foo/bar]`  |
 | `install_apts`   | no      | bool   |  |
 | `install_brews`  | no      | bool   |  |

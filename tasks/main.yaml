@@ -22,7 +22,7 @@
   git:
     repo: "{{ nvrc_url }}"
     dest: "{{ nvim_dir }}"
-    version: master
+    version: HEAD
     accept_hostkey: yes
     clone: yes
     force: no
@@ -33,7 +33,7 @@
   git:
     repo: "{{ nvim_url }}"
     dest: "{{ nvim_build_dir }}"
-    version: master
+    version: HEAD
     accept_hostkey: yes
     clone: yes
     update: yes
@@ -44,7 +44,7 @@
     repo: "{{ 'git@github.com:%s.git' | format(item.repo) }}"
     # repo: "{{  item }}"
     dest: "{{ gits_dir }}/{{ item.name }}"
-    version: master
+    version: HEAD
     accept_hostkey: yes
     clone: yes
     update: yes
@@ -56,7 +56,7 @@
   git:
     repo: "{{ 'https://github.com/%s.git' | format(item.repo) }}"
     dest: "{{ gits_dir }}/{{ item.name }}"
-    version: master
+    version: HEAD
     clone: yes
     update: yes
   with_items: "{{ gits }}"
@@ -70,6 +70,8 @@
     target: distclean
     make: "{{ exe_make }}"
   when: build_it
+  register: cleanup
+  changed_when: cleanup.rc == '0'
 
 - name: build release target
   community.general.make:
@@ -80,4 +82,6 @@
     target: install
     make: "{{ exe_make }}"
   when: build_it
+  register: build
+  changed_when: build.rc == '0'
 ...
