@@ -1,7 +1,8 @@
 # nvim_build  
 
-Install the dependencies and packages and clone or update the repos used for building and configuring neovim, then build and configure it.  
-To use this role, add the following to your requirements file and run ansible-galaxy role install -r requirements.yml
+This ansible role builds the nightly version of neovim on macOS and debian based linux distributions. 
+
+First, it installs or updates the dependencies, packages, and repos used for building and configuring your neovim, then builds it using the makefile in the source repo. To use this role, add the following to your requirements file and run ansible-galaxy role install -r requirements.yml
 
 ```yaml
 - src: https://github.com/klooj/nvim_build
