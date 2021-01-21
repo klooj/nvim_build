@@ -1,23 +1,6 @@
 ---
 # extras task
 
-- name: copy tab9 script
-  copy:
-    src: files/tab9_ansible.zsh
-    dest: ~/
-    owner: "{{ ansible_user_id }}"
-    mode: '0777'
-  when: install_tab9
-
-- name: run tab9 script
-  shell: |
-    ~/tab9_ansible.zsh
-    rm ~/tab9_ansible.zsh
-  args:
-    chdir: ~/
-    executable: "{{ exe_shell }}"
-  when: install_tab9
-
 - name: install or update lua lsp mac
   shell: |
     git pull

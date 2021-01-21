@@ -17,8 +17,6 @@ install_pips: false
 install_gems: false
 install_perls: false
 install_cargos: false
-install_fzf: false
-install_tab9: false
 
 lsp_lua_lx: false
 lsp_lua_mac: false
@@ -44,17 +42,17 @@ nv_dirs:
 
 lx_rtp_packs:
   - name: fzf
-    path: ~/go/bin/fzf
+    source: ~/go/bin/fzf
   - name: rg
-    path: ~/.cargo/bin/rg
+    source: ~/.cargo/bin/rg
   - name: rga
-    path: ~/.cargo/bin/rga
+    source: ~/.cargo/bin/rga
   - name: fd
-    path: ~/.cargo/bin/fd
+    source: ~/.cargo/bin/fd
   - name: fzy
-    path: /usr/bin/fzy
+    source: /usr/bin/fzy
   - name: ack
-    path: /usr/bin/ack
+    source: /usr/bin/ack
 
 apts:
   - ack

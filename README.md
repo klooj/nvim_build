@@ -14,7 +14,7 @@ First, it installs or updates the dependencies, packages, and repos used for bui
 
 This role works on debian based linux distros and macOS and requires apt or homebrew, respectively.  
 
-Zsh _might_ be required for tasks that use shell modules. You can define the executable however you like, but I always specify zsh and have never tried with another shell. The tasks using shell modules are: `install_cargos,` `install_fzf,` `install_tab9,` and the `lsp_lua` commands. In theory, the included TabNine or fzf scripts should require zsh.  
+Zsh _might_ be required for tasks that use shell modules. You can define the executable however you like, but I always specify zsh and have never tried with another shell. The tasks using shell modules are the `install_cargos` and `lsp_lua` tasks. In theory, zsh is not required.
 
 If you enable `lsp_lua_[mac|lx]`, it gets built from source. The dependencies are covered by the default brew/apt lists but the build may fail on machines with older versions of C++, which is well beyond scope. Also, the lua lsp does not build on armv (raspberrypi).  
 
@@ -53,16 +53,14 @@ It is not required but is strongly recommended to get your virtual environment a
 | `install_apts`   | no      | bool   |  |
 | `install_brews`  | no      | bool   |  |
 | `install_cargos` | no      | bool   | whether to install cargo, i.e. fd on lx (uses shell)  |
-| `install_fzf`    | no      | bool   | whether to run fzf install script (good for lx; mac uses brew)  |
 | `install_gems`   | no      | bool   |  |
 | `install_perls`  | no      | bool   | not working atm  |
 | `install_pips`   | no      | bool   |  |
-| `install_tab9`   | no      | bool   | run script files/tab9_ansible.zsh  |
 | `install_yarns`  | no      | bool   |  |
 | `lsp_lua_lx`     | no      | bool   | whether to install sumneko lua lsp linux  |
 | `lsp_lua_mac`    | no      | bool   | whether to install sumneko lua lsp mac  |
 | `lx_rtp_bin`     | no      | bool   | whether to create "vim bin" at /usr/local/opt  |
-| `lx_rtp_packs`   | +       | list   | symlinks from /usr/bin to /usr/local/opt  |
+| `lx_rtp_packs`   | +       | dict   | symlinks to vimbin; format:`[- name: fzf, source: ~/go/bin/fzf]`  |
 | `nv_dirs_mk`     | no      | bool   | whether to create directories specified by `nv_dirs`  |
 | `nv_dirs`        | +       | list   | folders to create; i.e., ~/.cache/nvim/undodir, etc.  |
 | `perls`          | +       | list   | perl modules  |

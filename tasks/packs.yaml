@@ -70,23 +70,6 @@
     cargo_done: yes
   when: (crates is defined) and crates.rc == 0
 
-- name: copy fzf script
-  copy:
-    src: files/fzf_ansible.zsh
-    dest: ~/
-    owner: "{{ ansible_user_id }}"
-    mode: '0777'
-  when: install_fzf
-
-- name: run fzf script
-  shell: |
-    ./fzf_ansible.zsh
-    rm ~/fzf_ansible.zsh
-  args:
-    chdir: ~/
-    executable: "{{ exe_shell }}"
-  when: install_fzf
-
 - name: create lx opt directory
   file:
     path: /usr/local/opt
@@ -97,7 +80,7 @@
 
 - name: link lx opt packs
   file:
-    src: "{{ item.path }}"
+    src: "{{ item.source }}"
     dest: "/usr/local/opt/{{ item.name }}"
     state: link
   with_items: "{{ lx_rtp_packs }}"
