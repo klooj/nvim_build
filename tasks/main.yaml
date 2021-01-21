@@ -12,7 +12,7 @@
 
 - name: clone user config
   git:
-    repo: "{{ nvrc_url }}.git"
+    repo: "{{ nvrc.url }}"
     dest: "{{ nvim_dir }}"
     version: master
     accept_hostkey: yes
@@ -22,8 +22,8 @@
 
 - name: clone source repo for build
   git:
-    repo: "{{ source_url }}.git"
-    dest: "{{ gits_dir }}/{{ nvim_source }}"
+    repo: "{{ nvim_source.url }}"
+    dest: "{{ gits_dir }}/{{ nvim_source.name }}"
     version: master
     accept_hostkey: yes
     clone: yes
@@ -32,7 +32,7 @@
 
 - name: clone extra repos ssh
   git:
-    repo: "git@github.com:{{ item.url }}.git"
+    repo: "{{ item.url }}"
     dest: "{{ gits_dir }}/{{ item.name }}"
     version: master
     accept_hostkey: yes
@@ -40,17 +40,6 @@
     update: yes
     key_file: "{{ git_key }}"
   with_items: "{{ gits }}"
-  when: pull_method == 'ssh'
-
-- name: clone extra repos https
-  git:
-    repo: "https://github.com/{{ item.url }}.git"
-    dest: "{{ gits_dir }}/{{ item.name }}"
-    version: master
-    clone: yes
-    update: yes
-  with_items: "{{ gits }}"
-  when: pull_method != 'ssh'
 
 - include_tasks: tasks/extras.yaml
 

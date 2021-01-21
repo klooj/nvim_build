@@ -1,12 +1,15 @@
 ---
 # defaults file for nvimBuild
 
-nvim_source: neovim/neovim
+nvim_source:
+  - name: neovim/neovim
+    url: git@github.com:neovim/neovim.git
+
 nvim_dir: "{{ ansible_env.HOME }}/.config/nvim"
 nvim_build_dir: "{{ gits_dir }}/neovim"
 nv_dirs_mk: false
 git_key: ""
-git_method: https
+# git_method: https
 
 install_brews: false
 install_apts: false
@@ -22,16 +25,16 @@ lsp_lua_lx: false
 lsp_lua_mac: false
 lx_rtp_bin: false
 
-pull_prefix: >
-  "{% if git_method == 'ssh' %}'git@github.com:'
-    {% else %}'https://github.com/'{% endif %}"
+# pull_prefix: >
+#   "{% if git_method == 'ssh' %}'git@github.com:'
+#     {% else %}'https://github.com/'{% endif %}"
 
 gits:
   - name: lua-language-server
-    url: sumneko/lua-language-server
+    url: git@github.com:sumneko/lua-language-server.git
 
-nvrc_url: "{{ pull_prefix + nvrc_repo }}"
-source_url: "{{ pull_prefix + nvim_source }}"
+# nvrc_url: "{{ pull_prefix + nvrc_repo }}"
+# source_url: "{{ pull_prefix + nvim_source }}"
 
 nv_dirs:
   - ~/.config

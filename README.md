@@ -90,7 +90,10 @@ ansible-galaxy collection install community.general
         force: no
 
   vars:
-    nvrc_repo: klooj/nvim
+    nvrc:
+      - name: klooj/nvim
+        repo: git@github.com:klooj/nvim.git
+
     build_it: yes
 
     gits_dir: "{{ ansible_env.HOME }}/gits"
