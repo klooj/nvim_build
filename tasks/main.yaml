@@ -4,11 +4,19 @@
     path: "{{ item }}"
     state: directory
     recurse: no
-    mode: 0750
+    mode: 0755
   with_items: "{{ nv_dirs }}"
   when: nv_dirs_mk
 
 - include_tasks: tasks/packs.yaml
+
+- name: load ssh formatted git urls
+  include_vars: vars/git_ssh.yml
+  when: git_method == 'ssh'
+
+- name: load https formatted git urls
+  include_vars: vars/git_ssh.yml
+  when: git_method != 'ssh'
 
 - name: clone user config
   git:

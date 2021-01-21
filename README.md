@@ -76,6 +76,8 @@ ansible-galaxy collection install community.general
 ## Example Playbook
 
 ```yaml
+# play/main.yaml:
+---
 - hosts: all
 
   pre_tasks:
@@ -91,14 +93,12 @@ ansible-galaxy collection install community.general
         force: no
 
   vars:
-    nvrc:
-      - name: klooj/nvim
-        repo: git@github.com:klooj/nvim.git
-
     build_it: yes
 
+    nvrc_url: git@github.com:klooj/nvim.git
+
     gits_dir: "{{ ansible_env.HOME }}/gits"
-    git_key: "~/.ssh/{{ ansible_hostname }}_git"
+    git_key: "~/.ssh/{{ ansible_hostname }}_secretKey"
     git_method: ssh
 
     lsp_lua_lx: yes
@@ -114,14 +114,19 @@ ansible-galaxy collection install community.general
     exe_yarn: ~/.config/nvm/versions/node/v14.15.1/bin/yarn
     install_gems: yes
 
-    # group_vars: exe_make, exe_shell, exe_gem, install_cargos
-
   roles:
     - nvim_build
+...
+
+# play/group_vars/macs.main:
+---
+exe_make = /usr/local/gnubin/make
+exe_shell = /usr/local/bin/zsh
+exe_gem = /usr/local/opt/ruby/bin/gem
+
+...
 
 ```
-
-NOTE: put `exe_shell` in `group_vars/` or `host_vars/`.
 
 ## License
 
