@@ -17,6 +17,7 @@
     accept_hostkey: yes
     clone: yes
     update: yes
+    key_file: "~/.ssh/{{ ansible_host }}_git"
 
 - name: clone source repo for build
   git:
@@ -26,6 +27,7 @@
     accept_hostkey: yes
     clone: yes
     update: yes
+    key_file: "~/.ssh/{{ ansible_host }}_git"
 
 - name: clone extra repos
   git:
@@ -35,6 +37,7 @@
     accept_hostkey: yes
     clone: yes
     update: yes
+    key_file: "~/.ssh/{{ ansible_host }}_git"
   with_items: "{{ gits }}"
 
 - include_tasks: tasks/extras.yaml
