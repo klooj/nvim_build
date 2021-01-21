@@ -9,4 +9,4 @@
       when: ansible_os_family == 'Debian'
 
     - include_role:
-      name: nvim_build
+        name: nvim_build
