@@ -41,6 +41,7 @@
     update: yes
     key_file: "{{ git_key }}"
   with_items: "{{ gits }}"
+  when: gits is iterable
 
 - include_tasks: tasks/extras.yaml
 
