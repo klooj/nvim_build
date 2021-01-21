@@ -8,4 +8,4 @@
         cache_valid_time: 86400
       when: ansible_os_family == 'Debian'
 
-    - include_tasks: ../../tasks/main.yaml
+    - include_role: ../../../nvim_build
