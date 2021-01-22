@@ -148,6 +148,7 @@ exe_shell = /usr/local/bin/zsh
 exe_gem = /usr/local/opt/ruby/bin/gem  
 ...  
 ```  
+---
 
 ## TODO
   - option to build on one host then distribute to many
@@ -156,10 +157,11 @@ exe_gem = /usr/local/opt/ruby/bin/gem
   - convert fzf and tab9 scripts to ansible tasks
   - vimr?
 
-----
-[^1]: Compatability with earlier versions of ansible would only require a few task names to be modified.
-[^2]: npm was constantly throwing errors over things that no self-respecting package manager should, so right now this role uses yarn only ... and I do not feel compelled to try reimplementing npm.  
-
 Author  |  License  
 --- | ---
 www.github.com/klooj  |  MIT
+
+---
+[^1]: Compatability with earlier versions of ansible would only require a few task names to be modified.  
+[^2]: npm was constantly throwing errors over things that no self-respecting package manager should, so right now this role uses yarn only ... and I do not feel compelled to try reimplementing npm.  
+
