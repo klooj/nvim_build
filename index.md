@@ -156,9 +156,9 @@ exe_gem = /usr/local/opt/ruby/bin/gem
   - convert fzf and tab9 scripts to ansible tasks
   - vimr?
 
-## Author \|\| License  
+## Author \t\|\|\t License  
 
-www.github.com/klooj  \|\|  MIT
+www.github.com/klooj \t\|\|t\ MIT
 
 ----
 [^1]: Compatability with earlier versions of ansible would only require a few task names to be modified.
