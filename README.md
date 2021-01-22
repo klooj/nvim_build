@@ -5,7 +5,7 @@
 
 This ansible role builds the nightly version of neovim on macOS and debian based linux distributions.
 
-First, it installs or updates the dependencies, packages, repos, and optional features used for building and configuring your neovim. If the install destination does not contain an nvim binary modified in the last day, then it builds neovim using the makefile from the source repo. This role puts everything in place but does not open neovim nor run arbitrary neovim commands, so it does not update or install plugins. To use this role, add the following to your requirements file and run `ansible-galaxy install klooj.nvim_build`
+First, it installs or updates the dependencies, packages, repos, and optional features used for building and configuring your neovimn and then it builds neovim using the makefile from the source repo. This role puts everything in place but does not open neovim nor run arbitrary neovim commands, so it does not update or install plugins. To use this role, add the following to your requirements file and run `ansible-galaxy install klooj.nvim_build`
 
 ## requirements  
 
@@ -17,19 +17,20 @@ The are also a few optional dependencies listed below.
 
 ## Role Variables  
 
-| variable               | default directory                     | description                               |
-|:----------------------:|:-------------------------------------:|:-----------------------------------------|
-| `nvim_build_dir`       | `{{ gits_dir }}/neovim`               | local dest for clone of source repo       |
-| `nvim_dir`             | `{{ ansible_env.HOME }}/.config/nvim` | local dest for clone of user config       |
-| `nvim_source`          | neovim/neovim                         | build source repo                         |
-| `nvrc_repo`            |                                       | personal config repo                      |
-| `install_path`         | ~/.local                              | dest for installed runtime files & binary |
+| variable         | default directory                     | description                               |
+|:----------------:|:-------------------------------------:|:------------------------------------------|
+| `nvim_build_dir` | `{{ gits_dir }}/neovim`               | local dest for clone of source repo       |
+| `nvim_dir`       | `{{ ansible_env.HOME }}/.config/nvim` | local dest for clone of user config       |
+| `nvim_source`    | neovim/neovim                         | build source repo                         |
+| `nvrc_repo`      |                                       | personal config repo                      |
+| `install_path`   | ~/.local                              | dest for installed runtime files & binary |
 
 
-**The default for nearly everything is non-action**.  
+**Other than `daily limit`, the default for nearly everything is non-action**.  
 
 | variable       | default | description                                                        | type   |
 |:--------------:|:-------:|:-------------------------------------------------------------------|:------:|
+| `daily_limit`  | yes     | do not build if successfully built less than a day ago (nvim,lsp)  | bool   |
 | `build_it`     | no      | whether to build and install nvim                                  | bool   |
 | `exe_make`     |         | path to executable                                                 | string |
 | `exe_shell`    |         | path to executable                                                 | string |

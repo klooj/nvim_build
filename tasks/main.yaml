@@ -62,17 +62,19 @@
   with_items: "{{ gits }}"
   when: git_method != 'ssh' and gits is iterable
 
-- include_tasks: tasks/lsp_lua.yaml
-  when:  lsp_lua_lx or lsp_lua_mac
-
-- name: check if we already built the binary in the last day
+- name: check if we built the binary in the last day
   ansible.builtin.find:
     paths: "{{ install_path }}/bin/nvim"
     age: 1d
-  register: days_old
-  when: build_it
+  register: days
+  when: build_it and (daily_limit is defined) and daily_limit
+
+- include_tasks: tasks/lsp_lua.yaml
+  when: >
+    (lsp_lua_lx or lsp_lua_mac) and
+    ((days is not defined) or days.matched != '0')
 
 - include_tasks: tasks/build.yaml
-  when: build_it and days_old.matched > 0
+  when: build_it and ((days is not defined) or days.matched != '0')
 
 ...

@@ -1,6 +1,7 @@
 ---
 # defaults file for nvimBuild
 build_it: no
+daily_limit: yes
 
 nvim_source: neovim/neovim
 nvim_build_dir: "{{ gits_dir }}/neovim"
