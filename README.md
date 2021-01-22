@@ -28,32 +28,32 @@ The are also a few optional dependencies listed below.
 | `nvim_dir`             | `{{ ansible_env.HOME }}/.config/nvim` | local dest for clone of user config       |
 | `nvim_source`          | neovim/neovim                         | build source repo                         |
 | `nvrc_repo`            |                                       | personal config repo                      |
-| `CMAKE_INSTALL_PREFIX` | ~/.local                              | dest for installed runtime files & binary |
+| `install_path`         | ~/.local                              | dest for installed runtime files & binary |
 
 
 **The default for nearly everything is non-action**.  
 
-| variable       | default | type   | description                                                        |
-|:--------------:|:-------:|:------:|:------------------------------------------------------------------:|
-| `build_it`     | no      | bool   | whether to build and install nvim                                  |
-| `exe_make`     |         | string | path to executable                                                 |
-| `exe_shell`    |         | string | path to executable                                                 |
-| `exe_pip`      |         | string | path to executable                                                 |
-| `exe_yarn`     |         | string | path to executable                                                 |
-| `exe_gem`      |         | string | path to executable                                                 |
-| `git_key`      |         | string | path to host key when using ssh for pulls/clones                   |
-| `git_method`   | https   | string | only supported options are ssh and https                           |
-| `gits_dir`     | ~/gits  | string | local parent directory where extra repos are cloned                |
-| `gits`         | +       | dict   | format: `[- name: any, repo: foo/bar]`                             |
-| `lx_rtp_bin`   | no      | bool   | whether to create "vim bin" at /usr/local/opt                      |
-| `lx_rtp_packs` | +       | dict   | symlinks into vimbin; format:`[- name: fzf, source: ~/go/bin/fzf]` |
-| `lsp_lua_lx`   | no      | bool   | whether to install sumneko lua lsp linux                           |
-| `lsp_lua_mac`  | no      | bool   | whether to install sumneko lua lsp mac                             |
-| `nv_dirs_mk`   | no      | bool   | whether to create directories specified by `nv_dirs`               |
-| `nv_dirs`      | +       | list   | folders to create; i.e., ~/.cache/nvim/undodir, etc.               |
+| variable       | default | description                                                        | type   |
+|:--------------:|:-------:|:------------------------------------------------------------------ |:------:|
+| `build_it`     | no      | whether to build and install nvim                                  | bool   |
+| `exe_make`     |         | path to executable                                                 | string |
+| `exe_shell`    |         | path to executable                                                 | string |
+| `exe_pip`      |         | path to executable                                                 | string |
+| `exe_yarn`     |         | path to executable                                                 | string |
+| `exe_gem`      |         | path to executable                                                 | string |
+| `git_key`      |         | path to host key when using ssh for pulls/clones                   | string |
+| `git_method`   | https   | only supported options are ssh and https                           | string |
+| `gits_dir`     | ~/gits  | local parent directory where extra repos are cloned                | string |
+| `gits`         |         | format: `[- name: any, repo: foo/bar]`                             | dict   |
+| `lx_rtp_bin`   | no      | whether to create "vim bin" at /usr/local/opt                      | bool   |
+| `lx_rtp_packs` | +       | symlinks into vimbin; format:`[- name: fzf, source: ~/go/bin/fzf]` | dict   |
+| `lsp_lua_lx`   | no      | whether to install sumneko lua lsp linux                           | bool   |
+| `lsp_lua_mac`  | no      | whether to install sumneko lua lsp mac                             | bool   |
+| `nv_dirs_mk`   | no      | whether to create directories specified by `nv_dirs`               | bool   |
+| `nv_dirs`      | +       | folders to create; i.e., ~/.cache/nvim/undodir, etc.               | list   |
 
 | variable         | default                 | type |
-|:----------------:|:-----------------------:|:----:|
+|:----------------:|:----------------------- |:----:|
 | `install_apts`   | no                      | bool |
 | `apts`           | see below               | list |
 | `install_brews`  | no                      | bool |

@@ -6,6 +6,7 @@ nvim_source: neovim/neovim
 nvim_build_dir: "{{ gits_dir }}/neovim"
 nvim_dir: "{{ ansible_env.HOME }}/.config/nvim"
 nv_dirs_mk: false
+install_path: "{{ ansible_env.HOME }}/.local"
 
 git_key: ""
 git_method: https
@@ -23,9 +24,9 @@ lsp_lua_lx: false
 lsp_lua_mac: false
 lx_rtp_bin: false
 
-gits:
-  - name: lua-language-server
-    repo: sumneko/lua-language-server
+gits: []
+  # - name: lua-language-server
+    # repo: sumneko/lua-language-server
 
 nv_dirs:
   - "{{ ansible_env.HOME }}/.config"

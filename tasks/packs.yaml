@@ -33,7 +33,7 @@
 - name: pip packs
   pip:
     requirements: "{{ nvim_dir }}/requirements.txt"
-    state: latest
+    state: present
     executable: "{{ exe_pip }}"
   when: install_pips
 

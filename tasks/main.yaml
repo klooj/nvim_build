@@ -19,7 +19,7 @@
   when: git_method != 'ssh'
 
 - name: clone user config
-  git:
+  ansible.builtin.git:
     repo: "{{ nvrc_url }}"
     dest: "{{ nvim_dir }}"
     version: HEAD
@@ -30,7 +30,7 @@
     key_file: "{{ git_key }}"
 
 - name: clone source repo for build
-  git:
+  ansible.builtin.git:
     repo: "{{ nvim_url }}"
     dest: "{{ nvim_build_dir }}"
     version: HEAD
@@ -40,7 +40,7 @@
     key_file: "{{ git_key }}"
 
 - name: clone extra repos ssh
-  git:
+  ansible.builtin.git:
     repo: "{{ 'git@github.com:%s.git' | format(item.repo) }}"
     # repo: "{{  item }}"
     dest: "{{ gits_dir }}/{{ item.name }}"
@@ -53,7 +53,7 @@
   when: git_method == 'ssh' and gits is iterable
 
 - name: clone extra repos https
-  git:
+  ansible.builtin.git:
     repo: "{{ 'https://github.com/%s.git' | format(item.repo) }}"
     dest: "{{ gits_dir }}/{{ item.name }}"
     version: HEAD
@@ -78,7 +78,7 @@
     chdir: "{{ nvim_build_dir }}"
     params:
       CMAKE_BUILD_TYPE: Release
-      CMAKE_INSTALL_PREFIX: "{{ ansible_env.HOME }}/.local"
+      CMAKE_INSTALL_PREFIX: "{{ install_path }}"
     target: install
     make: "{{ exe_make }}"
   when: build_it

@@ -1,10 +1,32 @@
 ---
 # extras task
 
+- name: clone or update sumneko lua repo ssh
+  ansible.builtin.git:
+    repo: git@github.com:sumneko/lua-language-server.git
+    dest: "{{ gits_dir }}/lua-language-server"
+    version: HEAD
+    accept_hostkey: yes
+    track_submodules: yes
+    force: yes
+    clone: yes
+    update: yes
+    key_file: "{{ git_key }}"
+  when: (git_method == 'ssh') and (lsp_lua_lx or lsp_lua_mac)
+
+- name: clone or update sumneko lua repo https
+  ansible.builtin.git:
+    repo: https://github.com/sumneko/lua-language-server.git
+    dest: "{{ gits_dir }}/lua-language-server"
+    version: HEAD
+    track_submodules: yes
+    clone: yes
+    force: yes
+    update: yes
+  when: (git_method != 'ssh') and (lsp_lua_lx or lsp_lua_mac)
+
 - name: install or update lua lsp mac
   shell: |
-    git pull
-    git submodule update --init --recursive
     cd 3rd/luamake
     ninja -f ninja/macos.ninja
     cd ../..
@@ -18,8 +40,6 @@
 
 - name: install or update lua lsp lx
   shell: |
-    git pull
-    git submodule update --init --recursive
     cd 3rd/luamake
     ninja -f ninja/linux.ninja
     cd ../..

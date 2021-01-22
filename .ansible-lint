@@ -2,7 +2,7 @@ exclude_paths:
   - ./molecule/
   - .travis.yml
   - tests/
-skip_list:
-  - 303
-  - 403
-  - 401
+#skip_list:
+#  - 303
+#  - 403
+#  - 401
