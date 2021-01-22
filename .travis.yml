@@ -8,12 +8,12 @@ os: linux
 services:
   - docker
 
-env:
-  global:
-    - ROLLE_NAME: nvim_build
+# env:
+  # global:
+    # - ROLE_NAME: "nvim_build"
 
 install:
-  - pip install ansible docker-py molecule[docker] molecule[lint]
+  - pip install ansible molecule[docker] molecule[lint]
 
 before_script:
   # Create ansible.cfg with correct roles_path
