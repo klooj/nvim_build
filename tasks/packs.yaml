@@ -59,7 +59,7 @@
     which rga &>/dev/null || cargo install ripgrep-all
     which fd &>/dev/null || cargo install fd-find
   args:
-    chdir: "{{ ansible_env.HOME }}"
+    chdir: "{{ ansible_env.HOME }}/"
     executable: "{{ exe_shell }}"
     register: crates
     changed_when: crates.rc == "0"
