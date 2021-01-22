@@ -15,11 +15,9 @@ galaxy_info:
   platforms:
     - name: Ubuntu
       versions:
-        - all
+        - bionic
+        - focal
     - name: macOS
-      versions:
-        - all
-    - name: RaspberryOS
       versions:
         - all
 
