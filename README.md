@@ -14,10 +14,11 @@ First, it installs or updates the dependencies, packages, and repos used for bui
 
 ## requirements  
 
-This role works on debian based linux distros and macOS and requires apt or homebrew, respectively. This has only been tested on ansible 2.10 and requires the community collection, which can be installed by running:  
-`ansible-galaxy collection install community.general`  
+  - This role works on debian based linux distros and macOS and requires apt or homebrew, respectively. 
+  - Ansible 2.10 is likely the minimum compatible version out of the box[^1] because I used the new naming conventions(mostly). To that end, the role employs the community collection, which can be installed by running:    
+  `ansible-galaxy collection install community.general`.   
 
-The are also a few optional dependencies listed in below.
+The are also a few optional dependencies listed below.
 
 ## Role Variables  
 
@@ -27,7 +28,7 @@ The are also a few optional dependencies listed in below.
 | `nvim_dir`       | `{{ ansible_env.HOME }}/.config/nvim` | local dest for clone of user config |
 | `nvim_source`    | neovim/neovim                         | build source repo                   |
 | `nvrc_repo`      |                                       | personal config repo                |
-| `CMAKE_INSTALL_PREFIX` |  ~/.local                       | location of installation & binary   |
+| `CMAKE_INSTALL_PREFIX` |  ~/.local                       | dest for installed runtime files & binary   |
 
 
 *The default for nearly everything is non-action*.  
@@ -157,4 +158,5 @@ MIT
 www.github.com/klooj  
 
 ----
-[^1]: npm was constantly throwing errors over things that no self-respecting package manager should, so right now this role uses yarn only ... and I do not feel compelled to try reimplementing npm.  
+[^1]: Compatability with earlier versions of ansible would only require a few task names to be modified.
+[^2]: npm was constantly throwing errors over things that no self-respecting package manager should, so right now this role uses yarn only ... and I do not feel compelled to try reimplementing npm.  
