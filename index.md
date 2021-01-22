@@ -195,12 +195,13 @@ exe_gem = /usr/local/opt/ruby/bin/gem
 
 ## TODO
 
-  - supplement/modify defaults rather than accept as is or redefine for each one.
-  - option to build on one host then distribute to many
-  - list of useful interactions between this role and nvim config, options, and features w/specific examples
-  - luarocks
-  - convert fzf and tab9 scripts to ansible tasks
-  - vimr?
+  - [ ] supplement/modify defaults rather than accept as is or redefine for each one.
+  - [ ] option to build on one host then distribute to many
+  - [x] default to build no more than once per day
+  - [ ] list of useful interactions between this role and nvim config, options, and features w/specific examples
+  - [ ] luarocks
+  - [ ] convert fzf and tab9 scripts to ansible tasks
+  - [ ] vimr?
 
 Author  |  License  
 --- | ---
