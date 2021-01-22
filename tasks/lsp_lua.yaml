@@ -12,7 +12,7 @@
     clone: yes
     update: yes
     key_file: "{{ git_key }}"
-  when: (git_method == 'ssh') and (lsp_lua_lx or lsp_lua_mac)
+  when: git_method == 'ssh'
   tags:
     - molecule-idempotence-notest
 
@@ -25,7 +25,7 @@
     clone: yes
     force: yes
     update: yes
-  when: (git_method != 'ssh') and (lsp_lua_lx or lsp_lua_mac)
+  when: git_method != 'ssh'
   tags:
     - molecule-idempotence-notest
 
@@ -38,7 +38,7 @@
   args:
     chdir: "{{ gits_dir }}/lua-language-server"
     executable: "{{ exe_shell }}"
-  when: ansible_system == 'Darwin' and lsp_lua_mac
+  when: ansible_system == 'Darwin'
   register: maclsp
   changed_when: maclsp.rc == '0'
 
@@ -53,7 +53,7 @@
     executable: "{{ exe_shell }}"
   when: >
     ansible_system == 'Linux' and
-    ansible_architecture != "armv7l" and lsp_lua_lx
+    ansible_architecture != 'armv7l'
   register: lxlsp
   changed_when: lxlsp.rc == '0'
 ...

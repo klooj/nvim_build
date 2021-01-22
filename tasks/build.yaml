@@ -1,0 +1,20 @@
+---
+- name: clean up artifacts from prior builds
+  community.general.make:
+    chdir: "{{ nvim_build_dir }}"
+    target: distclean
+    make: "{{ exe_make }}"
+  tags:
+    - molecule-idempotence-notest
+
+- name: build release target
+  community.general.make:
+    chdir: "{{ nvim_build_dir }}"
+    params:
+      CMAKE_BUILD_TYPE: Release
+      CMAKE_INSTALL_PREFIX: "{{ install_path }}"
+    target: install
+    make: "{{ exe_make }}"
+  tags:
+    - molecule-idempotence-notest
+...

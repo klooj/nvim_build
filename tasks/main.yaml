@@ -62,26 +62,17 @@
   with_items: "{{ gits }}"
   when: git_method != 'ssh' and gits is iterable
 
-- include_tasks: tasks/extras.yaml
+- include_tasks: tasks/lsp_lua.yaml
+  when:  lsp_lua_lx or lsp_lua_mac
 
-- name: clean up artifacts from prior builds
-  community.general.make:
-    chdir: "{{ nvim_build_dir }}"
-    target: distclean
-    make: "{{ exe_make }}"
+- name: check if we already built the binary in the last day
+  find:
+    path: "{{ install_path }}/bin/nvim"
+    age: 1d
+  register: built
   when: build_it
-  tags:
-    - molecule-idempotence-notest
 
-- name: build release target
-  community.general.make:
-    chdir: "{{ nvim_build_dir }}"
-    params:
-      CMAKE_BUILD_TYPE: Release
-      CMAKE_INSTALL_PREFIX: "{{ install_path }}"
-    target: install
-    make: "{{ exe_make }}"
-  when: build_it
-  tags:
-    - molecule-idempotence-notest
+- include_tasks: tasks/build.yaml
+  when: build_it and built.matched > 0
+
 ...
