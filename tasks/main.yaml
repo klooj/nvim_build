@@ -78,7 +78,7 @@
     chdir: "{{ nvim_build_dir }}"
     params:
       CMAKE_BUILD_TYPE: Release
-      CMAKE_INSTALL_PREFIX: ~/.local
+      CMAKE_INSTALL_PREFIX: "{{ ansible_env.HOME }}/.local"
     target: install
     make: "{{ exe_make }}"
   when: build_it

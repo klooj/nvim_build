@@ -9,7 +9,7 @@ nv_dirs_mk: false
 
 git_key: ""
 git_method: https
-gits_dir: ~/gits
+gits_dir:  "{{ ansible_env.HOME }}/gits"
 
 install_brews: false
 install_apts: false
@@ -28,28 +28,28 @@ gits:
     repo: sumneko/lua-language-server
 
 nv_dirs:
-  - ~/.config
-  - ~/.local
-  - ~/.cache
-  - ~/.cache/nvim
-  - ~/.cache/nvim/swag
-  - ~/.cache/nvim/undodir
-  - ~/.cache/nvim/backup
-  - ~/.cache/nvim/view
-  - ~/.cache/nvim/spell
-  - ~/.local/share
+  - "{{ ansible_env.HOME }}/.config"
+  - "{{ ansible_env.HOME }}/.local"
+  - "{{ ansible_env.HOME }}/.cache"
+  - "{{ ansible_env.HOME }}/.cache/nvim"
+  - "{{ ansible_env.HOME }}/.cache/nvim/swag"
+  - "{{ ansible_env.HOME }}/.cache/nvim/undodir"
+  - "{{ ansible_env.HOME }}/.cache/nvim/backup"
+  - "{{ ansible_env.HOME }}/.cache/nvim/view"
+  - "{{ ansible_env.HOME }}/.cache/nvim/spell"
+  - "{{ ansible_env.HOME }}/.local/share"
   - "{{ nvim_dir }}"
   - "{{ gits_dir }}"
 
 lx_rtp_packs:
   - name: fzf
-    source: ~/go/bin/fzf
+    source: "{{ ansible_env.HOME }}/go/bin/fzf"
   - name: rg
-    source: ~/.cargo/bin/rg
+    source: "{{ ansible_env.HOME }}/.cargo/bin/rg"
   - name: rga
-    source: ~/.cargo/bin/rga
+    source: "{{ ansible_env.HOME }}/.cargo/bin/rga"
   - name: fd
-    source: ~/.cargo/bin/fd
+    source: "{{ ansible_env.HOME }}/.cargo/bin/fd"
   - name: fzy
     source: /usr/bin/fzy
   - name: ack

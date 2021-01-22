@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: klooj
-  description: install dependencies for, build, and configure nvim
+  description: build neovim nightly
 
   # issue_tracker_url: http://example.com/issue/tracker
 
@@ -14,13 +14,13 @@ galaxy_info:
   platforms:
     - name: Ubuntu
       versions:
-        - 20+
+        - all
     - name: macOS
       versions:
-        - 10+
+        - all
     - name: RaspberryOS
       versions:
-        - 10+
+        - all
 
   galaxy_tags:
     - neovim

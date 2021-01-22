@@ -59,16 +59,16 @@
     which rga &>/dev/null || cargo install ripgrep-all
     which fd &>/dev/null || cargo install fd-find
   args:
-    chdir: ~/
+    chdir: "{{ ansible_env.HOME }}"
     executable: "{{ exe_shell }}"
     register: crates
-    changed_when: crates.rc == 0
+    changed_when: crates.rc == "0"
   when: install_cargos and not cargo_done
 
 - name: remember cargo installation
   set_fact:
     cargo_done: yes
-  when: (crates is defined) and crates.rc == 0
+  when: (crates is defined) and crates.rc == "0"
 
 - name: create lx opt directory
   file:
