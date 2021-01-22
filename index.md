@@ -14,9 +14,9 @@ First, it installs or updates the dependencies, packages, and repos used for bui
 
 ## requirements  
 
-  - This role works on debian based linux distros and macOS and requires apt or homebrew, respectively. 
-  - Ansible 2.10 is likely the minimum compatible version out of the box[^1] because I used the new naming conventions(mostly). To that end, the role employs the community collection, which can be installed by running:    
-  `ansible-galaxy collection install community.general`.   
+  - This role works on debian based linux distros and macOS and requires apt or homebrew, respectively.
+  - Ansible 2.10 is likely the minimum compatible version out of the box[^1] because I used the new naming conventions(mostly). To that end, the role employs the community collection, which can be installed by running:
+  `ansible-galaxy collection install community.general`.
 
 The are also a few optional dependencies listed below.
 
@@ -150,15 +150,15 @@ exe_gem = /usr/local/opt/ruby/bin/gem
 ```  
 
 ## TODO
-- option to build on one host then distribute to many
-- list of useful interactions between this role and nvim config, options, and features w/specific examples
-- luarocks
-- convert fzf and tab9 scripts to ansible tasks
-- vimr?
+  - option to build on one host then distribute to many
+  - list of useful interactions between this role and nvim config, options, and features w/specific examples
+  - luarocks
+  - convert fzf and tab9 scripts to ansible tasks
+  - vimr?
 
-## Author || License  
+## Author \|\| License  
 
-www.github.com/klooj  ||  MIT
+www.github.com/klooj  \|\|  MIT
 
 ----
 [^1]: Compatability with earlier versions of ansible would only require a few task names to be modified.
