@@ -12,12 +12,12 @@ First, it installs or updates the dependencies, packages, and repos used for bui
   name: nvim_build
 ```
 
-## Hard dependencies and requirements  
+## requirements  
 
 This role works on debian based linux distros and macOS and requires apt or homebrew, respectively. This has only been tested on ansible 2.10 and requires the community collection, which can be installed by running:  
 `ansible-galaxy collection install community.general`  
 
-The are a few optional dependencies listed in another section below.
+The are also a few optional dependencies listed in below.
 
 ## Role Variables  
 
@@ -72,7 +72,7 @@ The are a few optional dependencies listed in another section below.
   3. Only github is supported out of the box. I have never used gitlab or any other version control platform and do not know my way around.  
   4. The `lx_rtp_bin` "vim bin" is a directory with the same absolute path on each machine that is not in `$PATH`, and I use it for symlinking binaries that I want to made specifically available to neovim. So, in vimrc I can just rtp+=/usr/local/opt/fzf once and forget about it.  
 
-## Soft Dependencies  
+## dependencies  
 
 The dependencies are triggered in limited circumstances for certain optional features.
 
