@@ -69,7 +69,7 @@ The are also a few optional dependencies listed below.
 
 `+` = see defaults/main.yml for default values  
 
-| apt               |                            | brew             |
+| apt               | apt                        | brew             |
 |:-----------------:|:--------------------------:|:-----------------|
 | ack               | libtool                    | ack              |
 | autoconf          | libtool-bin                | automake         |
