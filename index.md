@@ -1,3 +1,4 @@
+
 ![CI](https://github.com/klooj/nvim_build/workflows/CI/badge.svg) [![Build Status](https://travis-ci.com/klooj/nvim_build.svg?branch=master)](https://travis-ci.com/klooj/nvim_build)
 
 # nvim_build  
@@ -88,6 +89,27 @@ The are also a few optional dependencies listed below.
   2. pip and yarn[^2] install from requirements.txt/package.json files, respectively, instead of taking a list. Make sure those files are in your `nvrc_repo` or use a pre-task to put them in `nvim_dir` (see playbook example below).  
   3. Only github is supported out of the box for cloning repos. I have never used gitlab or any other version control platform and do not know my way around.  
   4. The `lx_rtp_bin` "vim bin" is a directory with the same absolute path on each machine that is not in `$PATH`, and I use it for symlinking binaries that I want to made specifically available to neovim. So, in vimrc I can just rtp+=/usr/local/opt/fzf once and forget about it.  
+
+## Lua LSP
+
+If you enable the lua lsp installation in this role, put the following code or its equivalent in your init.lua or a lua herestring in your init.vim . If you kept the default value of `$HOME/gits` for `gits_dir`, then:
+
+```lua
+local sumneko_binary
+local sumneko_root_path =  os.getenv("HOME") .. "gits/lua-language-server"
+if vim.fn.has("mac") == 1 then
+  sumneko_binary = sumneko_root_path .. "/bin/macOS/lua-language-server"
+elseif vim.fn.has("unix") == 1 then
+   sumneko_binary = sumneko_root_path .. "/bin/Linux/lua-language-server"
+end
+...
+require('lspconfig').sumneko_lua.setup {
+    ...
+    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+    ...
+}
+...
+```
 
 ## dependencies  
 
