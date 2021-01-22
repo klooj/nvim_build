@@ -23,7 +23,7 @@ The are also a few optional dependencies listed below.
 ## Role Variables  
 
 | variable         | default directory                     | description                         |
-|:----------------------:|:-------------------------------------:|:-----------------------------------------:|
+|:----------------------:|:-------------------------------------:|:-----------------------------------------|
 | `nvim_build_dir` | `{{ gits_dir }}/neovim`               | local dest for clone of source repo |
 | `nvim_dir`       | `{{ ansible_env.HOME }}/.config/nvim` | local dest for clone of user config |
 | `nvim_source`    | neovim/neovim                         | build source repo                   |
@@ -34,7 +34,7 @@ The are also a few optional dependencies listed below.
 **The default for nearly everything is non-action**.  
 
 | variable         | default | type   | description  |
-|:--------------:|:-------:|:------:|:------------------------------------------------------------------:|
+|:--------------:|:-------:|:------:|:------------------------------------------------------------------|
 | `build_it`     | no      | bool   | whether to build and install nvim                                  |
 | `exe_make`       |         | string | path to executable  |
 | `exe_shell`    |         | string | path to executable                                                 |
@@ -53,7 +53,7 @@ The are also a few optional dependencies listed below.
 | `nv_dirs`        | +       | list   | folders to create; i.e., ~/.cache/nvim/undodir, etc.  |
 
 | variable         | default                 | type |
-|:----------------:|:-----------------------:|:----:|
+|:----------------:|:-----------------------|:----:|
 | `install_apts`   | no                      | bool |
 | `apts`           | see below               | list |
 | `install_brews`  | no                      | bool |
@@ -70,7 +70,7 @@ The are also a few optional dependencies listed below.
 `+` = see defaults/main.yml for default values  
 
 | apt                                            | brew             |
-|:----------------------------------------------:|:----------------:|
+|:----------------------------------------------:|:----------------|
 | ack                 libtool                    | ack              |
 | autoconf            libtool-bin                | automake         |
 | automake            libunibilium-dev           | ccache           |
