@@ -60,7 +60,6 @@ apts:
   - autoconf
   - automake
   - build-essential
-  - cargo
   - ccache
   - cmake
   - dirmngr
@@ -87,7 +86,6 @@ apts:
   - pandoc
   - pkg-config
   - poppler-utils
-  - ripgrep
   - software-properties-common
   - unzip
   - zsh

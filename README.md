@@ -73,6 +73,31 @@ The are also a few optional dependencies listed below.
   3. Only github is supported out of the box. I have never used gitlab or any other version control platform and do not know my way around.  
   4. The `lx_rtp_bin` "vim bin" is a directory with the same absolute path on each machine that is not in `$PATH`, and I use it for symlinking binaries that I want to made specifically available to neovim. So, in vimrc I can just rtp+=/usr/local/opt/fzf once and forget about it.  
 
+#### packages
+
+The following packages are installed by default because they are required by the build process or otherwise useful to vim users.
+
+| apt                                            | brew             |
+|------------------------------------------------|------------------|
+| ack                 libtool                    | ack              |
+| autoconf            libtool-bin                | automake         |
+| automake            libunibilium-dev           | ccache           |
+| build-essential     libutf8proc-dev            | cmake            |
+| ccache              libuv1-dev                 | fd               |
+| cmake               libvterm-dev               | fzy              |
+| dirmngr             lua5.3                     | gettext          |
+| ffmpeg              luajit                     | libtool          |
+| fzy                 luarocks                   | lua              |
+| g++                 ninja-build                | ninja            |
+| git                 pandoc                     | pkg-config       |
+| git-lfs             pkg-config                 | rg               |
+| gettext             poppler-utils              | rga              |
+| gperf               software-properties-common | fzf -- HEAD      |
+| libluajit-5.1-dev   unzip                      | luajit -- HEAD   |
+| libmsgpack-dev      zsh                        | luarocks -- HEAD |
+| libtermkey-dev                                 |                  |
+|                                                |                  |
+
 ## dependencies  
 
 The dependencies are triggered in limited circumstances for certain optional features.
@@ -90,7 +115,6 @@ The apt repositories created problems for ripgrep and fd due to outdated version
 This is not actually implemented in the role just yet, but it will address the same version issues described in the previous bullet. In the meantime, simply run `go get -u github.com/junegunn/fzf`
 
 It is not required but is strongly recommended to get your virtual environment affairs in order before running this play.  
-
 
 ## Example Playbook  
 
@@ -150,6 +174,8 @@ exe_gem = /usr/local/opt/ruby/bin/gem
 ```  
 
 ## TODO
+
+  - supplement/modify defaults rather than accept as is or redefine for each one.
   - option to build on one host then distribute to many
   - list of useful interactions between this role and nvim config, options, and features w/specific examples
   - luarocks
