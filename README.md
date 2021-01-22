@@ -12,16 +12,12 @@ First, it installs or updates the dependencies, packages, and repos used for bui
   name: nvim_build
 ```
 
-## Requirements  
+## Hard dependencies and requirements  
 
-This role works on debian based linux distros and macOS and requires apt or homebrew, respectively.  
+This role works on debian based linux distros and macOS and requires apt or homebrew, respectively. This has only been tested on ansible 2.10 and requires the community collection, which can be installed by running:  
+`ansible-galaxy collection install community.general`  
 
-Zsh _might_ be required for tasks that use shell modules. You can define the executable however you like, but I always specify zsh and have never tried with another shell. The tasks using shell modules are the `install_cargos` and `lsp_lua` tasks. In theory, zsh is not required.
-
-If you enable `lsp_lua_[mac|lx]`, it gets built from source. The dependencies are covered by the default brew/apt lists but the build may fail on machines with older versions of C++, which is well beyond scope. Also, the lua lsp does not build on armv (raspberrypi).  
-
-It is not required but is strongly recommended to get your virtual environment affairs in order before running this play.  
-
+The are a few optional dependencies listed in another section below.
 
 ## Role Variables  
 
@@ -70,16 +66,30 @@ It is not required but is strongly recommended to get your virtual environment a
 `+` = see defaults/main.yml for default values  
 
 
-### NOTE  
-
+**NOTE**  
   1. I cannot get ansible's cpanm module to function properly. If you would like perl + neovim integration, run this from the command line: `cpanm Neovim::Ext`  
   2. pip and yarn[^1] install from requirements.txt/package.json files, respectively, instead of taking a list. Make sure those files are in your `nvrc_repo` or use a pre-task to put them in `nvim_dir` (see playbook example below).  
   3. Only github is supported out of the box. I have never used gitlab or any other version control platform and do not know my way around.  
   4. The `lx_rtp_bin` "vim bin" is a directory with the same absolute path on each machine that is not in `$PATH`, and I use it for symlinking binaries that I want to made specifically available to neovim. So, in vimrc I can just rtp+=/usr/local/opt/fzf once and forget about it.  
 
-## Dependencies  
+## Soft Dependencies  
 
-  - ansible-galaxy collection install community.general  
+The dependencies are triggered in limited circumstances for certain optional features.
+
+  - Zsh _might_ be required for some optional tasks that use shell modules.
+You can define the executable however you like, but I always specify zsh and have never tried with another shell. The tasks using shell modules are the `install_cargos` and `lsp_lua`, which are located in tasks/packs.yaml and tasks/extras.yaml. In theory, zsh is not required but check the shell syntax before using something else.
+
+  - C++17 is required for building the optional stand-alone [sumneko](https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)) lua lsp.
+If you enable `lsp_lua_[mac|lx]`, it gets built from source. The dependencies are covered by the default brew/apt lists but the build may fail on machines with older versions of C++, which is well beyond scope and my comprehension. The only build failure I've come across is on a standard armv raspberry pi, which are excluded from building this feature even if enabled in the playbook.  
+
+  - rust w/cargo for installing the optional crates on linux.
+The apt repositories created problems for ripgrep and fd due to outdated versions and a namespace issue. I do not know if those problems continue, but I switched to installing them as crates with cargo. Homebrew does not have the same issues with these binaries.
+
+  - go for installing the optional fzf package on linux
+This is not actually implemented in the role just yet, but it will address the same version issues described in the previous bullet. In the meantime, simply run `go get -u github.com/junegunn/fzf`
+
+It is not required but is strongly recommended to get your virtual environment affairs in order before running this play.  
+
 
 ## Example Playbook  
 
