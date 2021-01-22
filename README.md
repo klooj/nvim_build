@@ -69,7 +69,7 @@ The are also a few optional dependencies listed below.
 
 **NOTE**  
   1. I cannot get ansible's cpanm module to function properly. If you would like perl + neovim integration, run this from the command line: `cpanm Neovim::Ext`  
-  2. pip and yarn[^1] install from requirements.txt/package.json files, respectively, instead of taking a list. Make sure those files are in your `nvrc_repo` or use a pre-task to put them in `nvim_dir` (see playbook example below).  
+  2. pip and yarn[^2] install from requirements.txt/package.json files, respectively, instead of taking a list. Make sure those files are in your `nvrc_repo` or use a pre-task to put them in `nvim_dir` (see playbook example below).  
   3. Only github is supported out of the box. I have never used gitlab or any other version control platform and do not know my way around.  
   4. The `lx_rtp_bin` "vim bin" is a directory with the same absolute path on each machine that is not in `$PATH`, and I use it for symlinking binaries that I want to made specifically available to neovim. So, in vimrc I can just rtp+=/usr/local/opt/fzf once and forget about it.  
 
@@ -149,13 +149,16 @@ exe_gem = /usr/local/opt/ruby/bin/gem
 ...  
 ```  
 
-## License  
+## TODO
+- option to build on one host then distribute to many
+- list of useful interactions between this role and nvim config, options, and features w/specific examples
+- luarocks
+- convert fzf and tab9 scripts to ansible tasks
+- vimr?
 
-MIT  
+## Author || License  
 
-## Author Information  
-
-www.github.com/klooj  
+www.github.com/klooj  ||  MIT
 
 ----
 [^1]: Compatability with earlier versions of ansible would only require a few task names to be modified.
