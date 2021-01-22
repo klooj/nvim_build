@@ -33,10 +33,11 @@
   ansible.builtin.git:
     repo: "{{ nvim_url }}"
     dest: "{{ nvim_build_dir }}"
-    version: HEAD
+    version: nightly
     accept_hostkey: yes
     clone: yes
     update: yes
+    force: yes
     key_file: "{{ git_key }}"
 
 - name: clone extra repos ssh
