@@ -6,6 +6,9 @@ name: CI
     paths:
       - '**.yml'
       - '**.yaml'
+    paths-ignore:
+      - tests/**
+      - .travis*
     branches:
       - master
 
