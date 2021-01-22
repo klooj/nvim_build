@@ -23,7 +23,7 @@ The are also a few optional dependencies listed below.
 ## Role Variables  
 
 | variable         | default directory                     | description                         |
-|------------------|---------------------------------------|-------------------------------------|
+|:----------------------:|:-------------------------------------:|:-----------------------------------------:|
 | `nvim_build_dir` | `{{ gits_dir }}/neovim`               | local dest for clone of source repo |
 | `nvim_dir`       | `{{ ansible_env.HOME }}/.config/nvim` | local dest for clone of user config |
 | `nvim_source`    | neovim/neovim                         | build source repo                   |
@@ -31,46 +31,69 @@ The are also a few optional dependencies listed below.
 | `CMAKE_INSTALL_PREFIX` |  ~/.local                       | dest for installed runtime files & binary   |
 
 
-*The default for nearly everything is non-action*.  
+**The default for nearly everything is non-action**.  
 
 | variable         | default | type   | description  |
-| ---------------- | ------- | ------ | -----------  |
-| `apts`           | +       | list   | apt packs  |
-| `brews`          | +       | list   | homebrew packs  |
-| `brew_heads`     | +       | list   | same but install from `--HEAD`  |
-| `build_it`       | no      | bool   | whether to actually build nvim after running all other tasks  |
-| `exe_gem`        |         | string | path to executable  |
+|:--------------:|:-------:|:------:|:------------------------------------------------------------------:|
+| `build_it`     | no      | bool   | whether to build and install nvim                                  |
 | `exe_make`       |         | string | path to executable  |
+| `exe_shell`    |         | string | path to executable                                                 |
 | `exe_pip`        |         | string | path to executable  |
-| `exe_shell`      |         | string | path to executable  |
 | `exe_yarn`       |         | string | path to executable  |
-| `gems`           | +       | list   | ruby gems  |
+| `exe_gem`      |         | string | path to executable                                                 |
 | `git_key`        |         | string | path to host key when using ssh for pulls/clones  |
 | `git_method`     | https   | string | only supported options are ssh and https  |
 | `gits_dir`       | ~/gits  | string | local parent directory where extra repos are cloned  |
-| `gits`           | +       | dict   | repos to clone; format: `[- name: any, repo: foo/bar]`  |
-| `install_apts`   | no      | bool   |  |
-| `install_brews`  | no      | bool   |  |
-| `install_cargos` | no      | bool   | whether to install fd, rg, and rga crates (uses shell)  |
-| `install_gems`   | no      | bool   |  |
-| `install_perls`  | no      | bool   | not working atm  |
-| `install_pips`   | no      | bool   |  |
-| `install_yarns`  | no      | bool   |  |
+| `gits`         | +       | dict   | format: `[- name: any, repo: foo/bar]`                             |
+| `lx_rtp_bin`   | no      | bool   | whether to create "vim bin" at /usr/local/opt                      |
+| `lx_rtp_packs` | +       | dict   | symlinks into vimbin; format:`[- name: fzf, source: ~/go/bin/fzf]` |
 | `lsp_lua_lx`     | no      | bool   | whether to install sumneko lua lsp linux  |
 | `lsp_lua_mac`    | no      | bool   | whether to install sumneko lua lsp mac  |
-| `lx_rtp_bin`     | no      | bool   | whether to create "vim bin" at /usr/local/opt  |
-| `lx_rtp_packs`   | +       | dict   | symlinks to vimbin; format:`[- name: fzf, source: ~/go/bin/fzf]`  |
 | `nv_dirs_mk`     | no      | bool   | whether to create directories specified by `nv_dirs`  |
 | `nv_dirs`        | +       | list   | folders to create; i.e., ~/.cache/nvim/undodir, etc.  |
-| `perls`          | +       | list   | perl modules  |
+
+| variable         | default                 | type |
+|:----------------:|:-----------------------:|:----:|
+| `install_apts`   | no                      | bool |
+| `apts`           | see below               | list |
+| `install_brews`  | no                      | bool |
+| `brews`          | see below               | list |
+| `brew_heads`     | see below               | list |
+| `install_gems`   | no                      | bool |
+| `gems`           | neovim, minitest-neovim | list |
+| `install_cargos` | no (fd, rg, rga)        | bool |
+| `install_perls`  | no                      | bool |
+| `perls`          | Neovim                  | list |
+| `install_pips`   | no                      | bool |
+| `install_yarns`  | no                      | bool |
 
 `+` = see defaults/main.yml for default values  
 
+| apt                                            | brew             |
+|:----------------------------------------------:|:----------------:|
+| ack                 libtool                    | ack              |
+| autoconf            libtool-bin                | automake         |
+| automake            libunibilium-dev           | ccache           |
+| build-essential     libutf8proc-dev            | cmake            |
+| ccache              libuv1-dev                 | fd               |
+| cmake               libvterm-dev               | fzy              |
+| dirmngr             lua5.3                     | gettext          |
+| ffmpeg              luajit                     | libtool          |
+| fzy                 luarocks                   | lua              |
+| g++                 ninja-build                | ninja            |
+| git                 pandoc                     | pkg-config       |
+| git-lfs             pkg-config                 | rg               |
+| gettext             poppler-utils              | rga              |
+| gperf               software-properties-common | fzf -- HEAD      |
+| libluajit-5.1-dev   unzip                      | luajit -- HEAD   |
+| libmsgpack-dev      zsh                        | luarocks -- HEAD |
+| libtermkey-dev                                 |                  |
+|                                                |                  |
 
 **NOTE**  
   1. I cannot get ansible's cpanm module to function properly. If you would like perl + neovim integration, run this from the command line: `cpanm Neovim::Ext`  
   2. pip and yarn[^2] install from requirements.txt/package.json files, respectively, instead of taking a list. Make sure those files are in your `nvrc_repo` or use a pre-task to put them in `nvim_dir` (see playbook example below).  
-  3. Only github is supported out of the box. I have never used gitlab or any other version control platform and do not know my way around.  
+  3. Only github is supported out of the box for cloning repos. I have never used gitlab or any other version control platform and do not know my way around.  
   4. The `lx_rtp_bin` "vim bin" is a directory with the same absolute path on each machine that is not in `$PATH`, and I use it for symlinking binaries that I want to made specifically available to neovim. So, in vimrc I can just rtp+=/usr/local/opt/fzf once and forget about it.  
 
 ## dependencies  
@@ -90,7 +113,6 @@ The apt repositories created problems for ripgrep and fd due to outdated version
 This is not actually implemented in the role just yet, but it will address the same version issues described in the previous bullet. In the meantime, simply run `go get -u github.com/junegunn/fzf`
 
 It is not required but is strongly recommended to get your virtual environment affairs in order before running this play.  
-
 
 ## Example Playbook  
 
@@ -148,9 +170,10 @@ exe_shell = /usr/local/bin/zsh
 exe_gem = /usr/local/opt/ruby/bin/gem  
 ...  
 ```  
----
 
 ## TODO
+
+  - supplement/modify defaults rather than accept as is or redefine for each one.
   - option to build on one host then distribute to many
   - list of useful interactions between this role and nvim config, options, and features w/specific examples
   - luarocks
@@ -164,4 +187,3 @@ www.github.com/klooj  |  MIT
 ---
 [^1]: Compatability with earlier versions of ansible would only require a few task names to be modified.  
 [^2]: npm was constantly throwing errors over things that no self-respecting package manager should, so right now this role uses yarn only ... and I do not feel compelled to try reimplementing npm.  
-
