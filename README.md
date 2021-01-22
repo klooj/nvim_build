@@ -1,4 +1,4 @@
-![CI](https://github.com/klooj/nvim_build/workflows/CI/badge.svg)
+![CI](https://github.com/klooj/nvim_build/workflows/CI/badge.svg) [![Build Status](https://travis-ci.com/klooj/nvim_build.svg?branch=master)](https://travis-ci.com/klooj/nvim_build)
 
 # nvim_build  
 
