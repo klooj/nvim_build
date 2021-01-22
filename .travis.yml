@@ -8,18 +8,18 @@ os: linux
 services:
   - docker
 
+env:
+  global:
+    - ROLLE_NAME: nvim_build
+
 install:
-  # Install ansible
   - pip install ansible docker-py molecule[docker] molecule[lint]
 
-  # Check ansible version
-  - ansible --version
-
+before_script:
   # Create ansible.cfg with correct roles_path
   - printf '[defaults]\nroles_path=../\nhost_key_checking = False' >ansible.cfg
 
 script:
-  - cd docker
   - molecule test
   # - ansible-playbook tests/test.yml -i tests/inventory --connection=local
 
