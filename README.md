@@ -4,13 +4,7 @@
 
 This ansible role builds the nightly version of neovim on macOS and debian based linux distributions.
 
-First, it installs or updates the dependencies, packages, and repos used for building and configuring your neovim, then builds it using the makefile in the source repo. This role puts everything in place but does not open neovim nor run arbitrary neovim commands, so it does not update or install plugins. To use this role, add the following to your requirements file and run `ansible-galaxy role install -r requirements.yml`
-
-```yaml
-- src: https://github.com/klooj/nvim_build
-  scm: git
-  name: nvim_build
-```
+First, it installs or updates the dependencies, packages, and repos used for building and configuring your neovim, then builds it using the makefile in the source repo. This role puts everything in place but does not open neovim nor run arbitrary neovim commands, so it does not update or install plugins. To use this role, add the following to your requirements file and run `ansible-galaxy install klooj.nvim_build`
 
 ## requirements  
 
@@ -23,7 +17,7 @@ The are also a few optional dependencies listed below.
 ## Role Variables  
 
 | variable               | default directory                     | description                               |
-|:----------------------:|:-------------------------------------:|:-----------------------------------------:|
+|:----------------------:|:-------------------------------------:|:-----------------------------------------|
 | `nvim_build_dir`       | `{{ gits_dir }}/neovim`               | local dest for clone of source repo       |
 | `nvim_dir`             | `{{ ansible_env.HOME }}/.config/nvim` | local dest for clone of user config       |
 | `nvim_source`          | neovim/neovim                         | build source repo                         |
@@ -34,7 +28,7 @@ The are also a few optional dependencies listed below.
 **The default for nearly everything is non-action**.  
 
 | variable       | default | description                                                        | type   |
-|:--------------:|:-------:|:------------------------------------------------------------------ |:------:|
+|:--------------:|:-------:|:-------------------------------------------------------------------|:------:|
 | `build_it`     | no      | whether to build and install nvim                                  | bool   |
 | `exe_make`     |         | path to executable                                                 | string |
 | `exe_shell`    |         | path to executable                                                 | string |
@@ -69,32 +63,52 @@ The are also a few optional dependencies listed below.
 
 `+` = see defaults/main.yml for default values  
 
-| apt                                            | brew             |
-|:----------------------------------------------:|:----------------:|
-| ack                 libtool                    | ack              |
-| autoconf            libtool-bin                | automake         |
-| automake            libunibilium-dev           | ccache           |
-| build-essential     libutf8proc-dev            | cmake            |
-| ccache              libuv1-dev                 | fd               |
-| cmake               libvterm-dev               | fzy              |
-| dirmngr             lua5.3                     | gettext          |
-| ffmpeg              luajit                     | libtool          |
-| fzy                 luarocks                   | lua              |
-| g++                 ninja-build                | ninja            |
-| git                 pandoc                     | pkg-config       |
-| git-lfs             pkg-config                 | rg               |
-| gettext             poppler-utils              | rga              |
-| gperf               software-properties-common | fzf -- HEAD      |
-| libluajit-5.1-dev   unzip                      | luajit -- HEAD   |
-| libmsgpack-dev      zsh                        | luarocks -- HEAD |
-| libtermkey-dev                                 |                  |
-|                                                |                  |
+| apt               | apt                        | brew             |
+|:-----------------:|:--------------------------:|:-----------------|
+| ack               | libtool                    | ack              |
+| autoconf          | libtool-bin                | automake         |
+| automake          | libunibilium-dev           | ccache           |
+| build-essential   | libutf8proc-dev            | cmake            |
+| ccache            | libuv1-dev                 | fd               |
+| cmake             | libvterm-dev               | fzy              |
+| dirmngr           | lua5.3                     | gettext          |
+| ffmpeg            | luajit                     | libtool          |
+| fzy               | luarocks                   | lua              |
+| g++               | ninja-build                | ninja            |
+| git               | pandoc                     | pkg-config       |
+| git-lfs           | pkg-config                 | rg               |
+| gettext           | poppler-utils              | rga              |
+| gperf             | software-properties-common | fzf -- HEAD      |
+| libluajit-5.1-dev | unzip                      | luajit -- HEAD   |
+| libmsgpack-dev    | zsh                        | luarocks -- HEAD |
+| libtermkey-dev    |                            |                  |
 
 **NOTE**  
   1. I cannot get ansible's cpanm module to function properly. If you would like perl + neovim integration, run this from the command line: `cpanm Neovim::Ext`  
   2. pip and yarn[^2] install from requirements.txt/package.json files, respectively, instead of taking a list. Make sure those files are in your `nvrc_repo` or use a pre-task to put them in `nvim_dir` (see playbook example below).  
   3. Only github is supported out of the box for cloning repos. I have never used gitlab or any other version control platform and do not know my way around.  
   4. The `lx_rtp_bin` "vim bin" is a directory with the same absolute path on each machine that is not in `$PATH`, and I use it for symlinking binaries that I want to made specifically available to neovim. So, in vimrc I can just rtp+=/usr/local/opt/fzf once and forget about it.  
+
+## Lua LSP
+
+If you enable the lua lsp installation in this role, put the following code or its equivalent in your init.lua or a lua herestring in your init.vim . If you kept the default value of `$HOME/gits` for `gits_dir`, then:
+
+```lua
+local sumneko_binary
+local sumneko_root_path =  os.getenv("HOME") .. "gits/lua-language-server"
+if vim.fn.has("mac") == 1 then
+  sumneko_binary = sumneko_root_path .. "/bin/macOS/lua-language-server"
+elseif vim.fn.has("unix") == 1 then
+   sumneko_binary = sumneko_root_path .. "/bin/Linux/lua-language-server"
+end
+...
+require('lspconfig').sumneko_lua.setup {
+    ...
+    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+    ...
+}
+...
+```
 
 ## dependencies  
 

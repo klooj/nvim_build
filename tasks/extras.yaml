@@ -13,6 +13,8 @@
     update: yes
     key_file: "{{ git_key }}"
   when: (git_method == 'ssh') and (lsp_lua_lx or lsp_lua_mac)
+  tags:
+    - molecule-idempotence-notest
 
 - name: clone or update sumneko lua repo https
   ansible.builtin.git:
@@ -24,6 +26,8 @@
     force: yes
     update: yes
   when: (git_method != 'ssh') and (lsp_lua_lx or lsp_lua_mac)
+  tags:
+    - molecule-idempotence-notest
 
 - name: install or update lua lsp mac
   shell: |
