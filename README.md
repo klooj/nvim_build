@@ -154,6 +154,7 @@ MIT
 
 ## Author Information  
 
-github.com/klooj  
+www.github.com/klooj  
 
+----
 [^1]: npm was constantly throwing errors over things that no self-respecting package manager should, so right now this role uses yarn only ... and I do not feel compelled to try reimplementing npm.  
