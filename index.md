@@ -69,26 +69,25 @@ The are also a few optional dependencies listed below.
 
 `+` = see defaults/main.yml for default values  
 
-| apt                                            | brew             |
-|:----------------------------------------------:|:----------------|
-| ack                 libtool                    | ack              |
-| autoconf            libtool-bin                | automake         |
-| automake            libunibilium-dev           | ccache           |
-| build-essential     libutf8proc-dev            | cmake            |
-| ccache              libuv1-dev                 | fd               |
-| cmake               libvterm-dev               | fzy              |
-| dirmngr             lua5.3                     | gettext          |
-| ffmpeg              luajit                     | libtool          |
-| fzy                 luarocks                   | lua              |
-| g++                 ninja-build                | ninja            |
-| git                 pandoc                     | pkg-config       |
-| git-lfs             pkg-config                 | rg               |
-| gettext             poppler-utils              | rga              |
-| gperf               software-properties-common | fzf -- HEAD      |
-| libluajit-5.1-dev   unzip                      | luajit -- HEAD   |
-| libmsgpack-dev      zsh                        | luarocks -- HEAD |
-| libtermkey-dev                                 |                  |
-|                                                |                  |
+| apt               |                            | brew             |
+|:-----------------:|:--------------------------:|:-----------------|
+| ack               | libtool                    | ack              |
+| autoconf          | libtool-bin                | automake         |
+| automake          | libunibilium-dev           | ccache           |
+| build-essential   | libutf8proc-dev            | cmake            |
+| ccache            | libuv1-dev                 | fd               |
+| cmake             | libvterm-dev               | fzy              |
+| dirmngr           | lua5.3                     | gettext          |
+| ffmpeg            | luajit                     | libtool          |
+| fzy               | luarocks                   | lua              |
+| g++               | ninja-build                | ninja            |
+| git               | pandoc                     | pkg-config       |
+| git-lfs           | pkg-config                 | rg               |
+| gettext           | poppler-utils              | rga              |
+| gperf             | software-properties-common | fzf -- HEAD      |
+| libluajit-5.1-dev | unzip                      | luajit -- HEAD   |
+| libmsgpack-dev    | zsh                        | luarocks -- HEAD |
+| libtermkey-dev    |                            |                  |
 
 **NOTE**  
   1. I cannot get ansible's cpanm module to function properly. If you would like perl + neovim integration, run this from the command line: `cpanm Neovim::Ext`  
