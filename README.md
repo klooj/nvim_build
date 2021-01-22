@@ -7,6 +7,12 @@ This ansible role builds the nightly version of neovim on macOS and debian based
 
 First, it installs or updates the dependencies, packages, repos, and optional features used for building and configuring your neovimn and then it builds neovim using the makefile from the source repo. This role puts everything in place but does not open neovim nor run arbitrary neovim commands, so it does not update or install plugins. To use this role, add the following to your requirements file and run `ansible-galaxy install klooj.nvim_build`
 
+If the galaxy install method is throwing errors, put the following in a reqs.yaml file and run `ansible-galaxy install -f -r reqs.yml`
+
+```yaml
+- src: https://github.com/klooj/nvim_build
+```
+
 ## requirements  
 
   - This role works on debian based linux distros and macOS and requires apt or homebrew, respectively.
@@ -26,7 +32,7 @@ The are also a few optional dependencies listed below.
 | `install_path`   | ~/.local                              | dest for installed runtime files & binary |
 
 
-**Other than `daily limit`, the default for nearly everything is non-action**.  
+**The default for nearly everything is non-action**.  
 
 | variable       | default | description                                                        | type   |
 |:--------------:|:-------:|:-------------------------------------------------------------------|:------:|
