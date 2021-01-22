@@ -1,2 +1,4 @@
 theme: jekyll-theme-midnight
 markdown: kramdown
+readme_index:
+  enabled: true
