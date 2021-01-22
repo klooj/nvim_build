@@ -31,51 +31,43 @@ The are also a few optional dependencies listed below.
 | `CMAKE_INSTALL_PREFIX` | ~/.local                              | dest for installed runtime files & binary |
 
 
-*The default for nearly everything is non-action*.  
+**The default for nearly everything is non-action**.  
 
-| variable         | default | type   | description                                                      |
-|:----------------:|:-------:|:------:|:----------------------------------------------------------------:|
-| `apts`           | +       | list   | apt packs                                                        |
-| `brews`          | +       | list   | homebrew packs                                                   |
-| `brew_heads`     | +       | list   | same but install from `--HEAD`                                   |
-| `build_it`       | no      | bool   | whether to actually build nvim after running all other tasks     |
-| `exe_gem`        |         | string | path to executable                                               |
-| `exe_make`       |         | string | path to executable                                               |
-| `exe_pip`        |         | string | path to executable                                               |
-| `exe_shell`      |         | string | path to executable                                               |
-| `exe_yarn`       |         | string | path to executable                                               |
-| `gems`           | +       | list   | ruby gems                                                        |
-| `git_key`        |         | string | path to host key when using ssh for pulls/clones                 |
-| `git_method`     | https   | string | only supported options are ssh and https                         |
-| `gits_dir`       | ~/gits  | string | local parent directory where extra repos are cloned              |
-| `gits`           | +       | dict   | repos to clone; format: `[- name: any, repo: foo/bar]`           |
-| `install_apts`   | no      | bool   |                                                                  |
-| `install_brews`  | no      | bool   |                                                                  |
-| `install_cargos` | no      | bool   | whether to install fd, rg, and rga crates (uses shell)           |
-| `install_gems`   | no      | bool   |                                                                  |
-| `install_perls`  | no      | bool   | not working atm                                                  |
-| `install_pips`   | no      | bool   |                                                                  |
-| `install_yarns`  | no      | bool   |                                                                  |
-| `lsp_lua_lx`     | no      | bool   | whether to install sumneko lua lsp linux                         |
-| `lsp_lua_mac`    | no      | bool   | whether to install sumneko lua lsp mac                           |
-| `lx_rtp_bin`     | no      | bool   | whether to create "vim bin" at /usr/local/opt                    |
-| `lx_rtp_packs`   | +       | dict   | symlinks to vimbin; format:`[- name: fzf, source: ~/go/bin/fzf]` |
-| `nv_dirs_mk`     | no      | bool   | whether to create directories specified by `nv_dirs`             |
-| `nv_dirs`        | +       | list   | folders to create; i.e., ~/.cache/nvim/undodir, etc.             |
-| `perls`          | +       | list   | perl modules                                                     |
+| variable       | default | type   | description                                                        |
+|:--------------:|:-------:|:------:|:------------------------------------------------------------------:|
+| `build_it`     | no      | bool   | whether to build and install nvim                                  |
+| `exe_make`     |         | string | path to executable                                                 |
+| `exe_shell`    |         | string | path to executable                                                 |
+| `exe_pip`      |         | string | path to executable                                                 |
+| `exe_yarn`     |         | string | path to executable                                                 |
+| `exe_gem`      |         | string | path to executable                                                 |
+| `git_key`      |         | string | path to host key when using ssh for pulls/clones                   |
+| `git_method`   | https   | string | only supported options are ssh and https                           |
+| `gits_dir`     | ~/gits  | string | local parent directory where extra repos are cloned                |
+| `gits`         | +       | dict   | format: `[- name: any, repo: foo/bar]`                             |
+| `lx_rtp_bin`   | no      | bool   | whether to create "vim bin" at /usr/local/opt                      |
+| `lx_rtp_packs` | +       | dict   | symlinks into vimbin; format:`[- name: fzf, source: ~/go/bin/fzf]` |
+| `lsp_lua_lx`   | no      | bool   | whether to install sumneko lua lsp linux                           |
+| `lsp_lua_mac`  | no      | bool   | whether to install sumneko lua lsp mac                             |
+| `nv_dirs_mk`   | no      | bool   | whether to create directories specified by `nv_dirs`               |
+| `nv_dirs`      | +       | list   | folders to create; i.e., ~/.cache/nvim/undodir, etc.               |
+
+| variable         | default                 | type |
+|:----------------:|:-----------------------:|:----:|
+| `install_apts`   | no                      | bool |
+| `apts`           | see below               | list |
+| `install_brews`  | no                      | bool |
+| `brews`          | see below               | list |
+| `brew_heads`     | see below               | list |
+| `install_gems`   | no                      | bool |
+| `gems`           | neovim, minitest-neovim | list |
+| `install_cargos` | no (fd, rg, rga)        | bool |
+| `install_perls`  | no                      | bool |
+| `perls`          | Neovim                  | list |
+| `install_pips`   | no                      | bool |
+| `install_yarns`  | no                      | bool |
 
 `+` = see defaults/main.yml for default values  
-
-
-**NOTE**  
-  1. I cannot get ansible's cpanm module to function properly. If you would like perl + neovim integration, run this from the command line: `cpanm Neovim::Ext`  
-  2. pip and yarn[^2] install from requirements.txt/package.json files, respectively, instead of taking a list. Make sure those files are in your `nvrc_repo` or use a pre-task to put them in `nvim_dir` (see playbook example below).  
-  3. Only github is supported out of the box. I have never used gitlab or any other version control platform and do not know my way around.  
-  4. The `lx_rtp_bin` "vim bin" is a directory with the same absolute path on each machine that is not in `$PATH`, and I use it for symlinking binaries that I want to made specifically available to neovim. So, in vimrc I can just rtp+=/usr/local/opt/fzf once and forget about it.  
-
-#### packages
-
-The following packages are installed by default because they are required by the build process or otherwise useful to vim users.
 
 | apt                                            | brew             |
 |:----------------------------------------------:|:----------------:|
@@ -97,6 +89,12 @@ The following packages are installed by default because they are required by the
 | libmsgpack-dev      zsh                        | luarocks -- HEAD |
 | libtermkey-dev                                 |                  |
 |                                                |                  |
+
+**NOTE**  
+  1. I cannot get ansible's cpanm module to function properly. If you would like perl + neovim integration, run this from the command line: `cpanm Neovim::Ext`  
+  2. pip and yarn[^2] install from requirements.txt/package.json files, respectively, instead of taking a list. Make sure those files are in your `nvrc_repo` or use a pre-task to put them in `nvim_dir` (see playbook example below).  
+  3. Only github is supported out of the box for cloning repos. I have never used gitlab or any other version control platform and do not know my way around.  
+  4. The `lx_rtp_bin` "vim bin" is a directory with the same absolute path on each machine that is not in `$PATH`, and I use it for symlinking binaries that I want to made specifically available to neovim. So, in vimrc I can just rtp+=/usr/local/opt/fzf once and forget about it.  
 
 ## dependencies  
 

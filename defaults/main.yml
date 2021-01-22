@@ -111,7 +111,6 @@ brew_heads:
   - luarocks
 
 gems:
-  - rake
   - neovim
   - minitest-neovim
 
