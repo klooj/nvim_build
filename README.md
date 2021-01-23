@@ -1,4 +1,3 @@
-
 ![CI](https://github.com/klooj/nvim_build/workflows/CI/badge.svg) [![Build Status](https://travis-ci.com/klooj/nvim_build.svg?branch=master)](https://travis-ci.com/klooj/nvim_build)
 
 # nvim_build  
@@ -31,6 +30,7 @@ The are also a few optional dependencies listed below.
 | `nvrc_repo`      |                                       | personal config repo                      |
 | `install_path`   | ~/.local                              | dest for installed runtime files & binary |
 
+----
 
 **The default for nearly everything is non-action**.  
 
@@ -54,6 +54,10 @@ The are also a few optional dependencies listed below.
 | `nv_dirs_mk`   | no      | whether to create directories specified by `nv_dirs`               | bool   |
 | `nv_dirs`      | +       | folders to create; i.e., ~/.cache/nvim/undodir, etc.               | list   |
 
+`+` = see defaults/main.yml for default values  
+
+----
+
 | variable         | default                 | type |
 |:----------------:|:----------------------- |:----:|
 | `install_apts`   | no                      | bool |
@@ -69,7 +73,7 @@ The are also a few optional dependencies listed below.
 | `install_pips`   | no                      | bool |
 | `install_yarns`  | no                      | bool |
 
-`+` = see defaults/main.yml for default values  
+----
 
 | apt               | apt                        | brew             |
 |:-----------------:|:--------------------------:|:-----------------|
@@ -91,6 +95,7 @@ The are also a few optional dependencies listed below.
 | libmsgpack-dev    | zsh                        | luarocks -- HEAD |
 | libtermkey-dev    |                            |                  |
 
+----
 **NOTE**  
   1. I cannot get ansible's cpanm module to function properly. If you would like perl + neovim integration, run this from the command line: `cpanm Neovim::Ext`  
   2. pip and yarn[^2] install from requirements.txt/package.json files, respectively, instead of taking a list. Make sure those files are in your `nvrc_repo` or use a pre-task to put them in `nvim_dir` (see playbook example below).  
@@ -195,12 +200,13 @@ exe_gem = /usr/local/opt/ruby/bin/gem
 
 ## TODO
 
-  - supplement/modify defaults rather than accept as is or redefine for each one.
-  - option to build on one host then distribute to many
-  - list of useful interactions between this role and nvim config, options, and features w/specific examples
-  - luarocks
-  - convert fzf and tab9 scripts to ansible tasks
-  - vimr?
+  - [ ] supplement/modify defaults rather than accept as is or redefine for each one.
+  - [ ] option to build on one host then distribute to many
+  - [x] default to build no more than once per day
+  - [ ] list of useful interactions between this role and nvim config, options, and features w/specific examples
+  - [ ] luarocks
+  - [ ] convert fzf and tab9 scripts to ansible tasks
+  - [ ] vimr?
 
 Author  |  License  
 --- | ---
