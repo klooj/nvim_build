@@ -33,7 +33,7 @@
   ansible.builtin.git:
     repo: "{{ nvim_url }}"
     dest: "{{ nvim_build_dir }}"
-    version: nightly
+    version: HEAD
     accept_hostkey: yes
     clone: yes
     update: yes
