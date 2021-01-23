@@ -24,8 +24,8 @@ The are also a few optional dependencies listed below.
 
 | variable         | default directory                     | description                         |
 |:----------------:|:-------------------------------------:|:------------------------------------------|
-| `nvim_build_dir` | `{{ gits_dir }}/neovim`               | local dest for clone of source repo |
-| `nvim_dir`       | `{{ ansible_env.HOME }}/.config/nvim` | local dest for clone of user config |
+| `nvim_build_dir` | {{ gits_dir }}/neovim               | local dest for clone of source repo |
+| `nvim_dir`       | {{ ansible_env.HOME }}/.config/nvim | local dest for clone of user config |
 | `nvim_source`    | neovim/neovim                         | build source repo                   |
 | `nvrc_repo`      |                                       | personal config repo                |
 | `install_path`         | ~/.local                              | dest for installed runtime files & binary |
