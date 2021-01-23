@@ -68,10 +68,11 @@ apts:
   - ffmpeg
   - fzy
   - g++
+  - gettext
   - git
   - git-lfs
-  - gettext
   - gperf
+  - libjemalloc-dev
   - libluajit-5.1-dev
   - libmsgpack-dev
   - libtermkey-dev
@@ -81,13 +82,17 @@ apts:
   - libutf8proc-dev
   - libuv1-dev
   - libvterm-dev
-  - lua5.3
-  - luajit
+  - lua-bitop
+  - lua-ljsyscall
+  - lua-lpeg
+  - lua-mpack
+  - lua5.1
   - luarocks
   - ninja-build
   - pandoc
   - pkg-config
   - poppler-utils
+  - python3-lupa
   - software-properties-common
   - unzip
   - zsh
@@ -100,8 +105,11 @@ brews:
   - fd
   - fzy
   - gettext
+  - git-lfs
   - libtool
   - lua
+  - lua@5.1
+  - luarocks
   - ninja
   - pkg-config
   - rg
@@ -110,7 +118,6 @@ brews:
 brew_heads:
   - fzf
   - luajit
-  - luarocks
 
 gems:
   - neovim

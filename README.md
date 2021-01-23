@@ -17,6 +17,8 @@ If the galaxy install method is throwing errors, put the following in a reqs.yam
   - This role works on debian based linux distros and macOS and requires apt or homebrew, respectively.
   - Ansible 2.10 is likely the minimum compatible version out of the box[^1] because I used the new naming conventions(mostly). To that end, the role employs the community collection, which can be installed by running:
   `ansible-galaxy collection install community.general`.
+  - neovim explicitly requires lua5.1 . in most situations, this requires uninstalling later version, setting enivornment variables, or setting up shims. for now, this role does not venture down the "path" path but does make sure 5.1 is installed.
+  - github3.py >= 1.0.0a3
 
 The are also a few optional dependencies listed below.
 

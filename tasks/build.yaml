@@ -13,6 +13,7 @@
     params:
       CMAKE_BUILD_TYPE: Release
       CMAKE_INSTALL_PREFIX: "{{ install_path }}"
+      # USE_BUNDLED: "OFF"
     target: install
     make: "{{ exe_make }}"
   tags:

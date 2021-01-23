@@ -17,6 +17,11 @@
         update_cache: true
         cache_valid_time: 86400
       when: ansible_os_family == 'Debian'
+    
+    - name: github dep
+      pip:
+        name: github3.py
+        state: present
 
     - include_role:
         name: nvim_build
