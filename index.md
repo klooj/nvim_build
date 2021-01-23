@@ -30,6 +30,7 @@ The are also a few optional dependencies listed below.
 | `nvim_source`    | neovim/neovim                         | build source repo                   |
 | `nvrc_repo`      |                                       | personal config repo                |
 | `install_path`         | ~/.local                              | dest for installed runtime files & binary |
+
 ----
 
 **The default for nearly everything is non-action**.  
